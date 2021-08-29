@@ -1,3 +1,16 @@
 h1{
     font-weight: 300;
 }
+#html{
+    font-size: large;
+    display: inline-block;
+    background-color: red;
+    width: 100px;
+    height: 100px;
+}
+#css{
+    background-color: yellow;
+}
+#js{
+    background-color: violet;
+}
