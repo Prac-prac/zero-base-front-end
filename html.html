@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>html 문법 참고</h2>
+        <p>heading 태그로 목록화 시킴. h1태그는 한 번만.</p>
+        <p>스페이스바 많이 눌러도 한 번으로 취급</p>
+
+    <h2>인용문 blockquote, q</h2>
+        <blockquote cite="http://naver.com"> <!--cite는 출처를 나타냄-->
+            <p>
+                대한민국 최대 포털 사이트
+            </p>
+            <p>
+                자매 서비스로 모바일 메신저 라인, 뉴스, 웹툰, 지도, 검색 엔진 등을 보유하고 있다.
+            </p>
+            <p>
+                이렇게 &lt;blockquote&gt;는 p태그를 많이 내포할 수 있음.
+            </p>
+        </blockquote>
+        <p>이것은 그냥 p태그 일반 문단. 비교해보면 &lt;blockquote&gt;는 일반 문단보다 앞 공백이 있음을 알 수 있다.</p>
+
+        <p><q>이건 또다른 인용문 &lt;q&gt; 사용. 쌍따옴표가 있다</q>이건 q태크 밖 p태그 안에서 쓴 글</p>
+
+        
+        <h3>정리</h3>
+        <p>    
+            &lt;blockquote&gt;는 블록요소. 앞 공백. 많은 p태그 내포 가능<br>
+            &lt;q&gt;는 인라인요소. 쌍따옴표. 인라인요소는 블록요소 포함 못하므로 당연히 p태그 내포X
+        </p>
+        <h3>주의</h3>
+        <p class="emphasis">
+            &lt;blockquote&gt;는 &lt;p&gt;안에서 쓰면 X.<br>
+            <span class="red">내부에 있는 자식 태그가 블록 요소이면 자동으로 중간에 &lt;p&gt;가 닫힘.</span><br>
+            눈으로 보이지 않지만 p태그 중간에 다른 블록 요소가 나와버리면 닫힘.<br>
+            &lt;q&gt;는 인라인요소이니 가능
+        </p>
+        <h2>figure, figcaption 덩어리 하나로 묶어 설명 붙일 때</h2>
+        <p>figure로 묶고 자식 요소 figcaption로 설명 붙임</p>
+</body>
+</html>

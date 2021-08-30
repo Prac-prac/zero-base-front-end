@@ -1,16 +1,21 @@
 h1{
     font-weight: 300;
 }
-#html{
+#html:hover{
     font-size: large;
     display: inline-block;
     background-color: red;
-    width: 100px;
-    height: 100px;
 }
 #css{
     background-color: yellow;
 }
 #js{
     background-color: violet;
+}
+.emphasis{
+    color: black;
+    font-weight: 400;
+}
+.red{
+    color: red;
 }
