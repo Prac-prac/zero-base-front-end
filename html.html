@@ -57,5 +57,30 @@
         <h2>w3school Entity 예약어 아닌 문자 그대로 특수문자로 표현하고 싶을 때</h2>
         <h2>시맨틱(의미의, 의미론적인) 웹</h2>
         <p>header, nav(메뉴), main의 article(본문), aside(사이드바), footer</p>
+        <h2>임베디드 요소</h2>
+        <p>내용 직접 코드 작성하는 것 아닌 외부의 소스 불러와서 웹페이지 내 삽입하는 요소</p>
+        <h3>반응형 이미지</h3>
+        <!--sizes는 css 구현 가능. srcset 가로길이에 따라 이미지 선택. sizes 웹 가로사이즈가 커져도 img는 더 커지지 않도록 한계 설정-->    
+        <img 
+            src="https://via.placeholder.com/600" 
+            srcset="https://via.placeholder.com/300 300w,
+                    https://via.placeholder.com/450 450w,
+                    https://via.placeholder.com/600 600w"
+            sizes="(min-width: 600px) 600px,
+                   (min-width: 450px) 450px,
+                   300px"    
+            alt="responsive images">
+        <h3>비디오</h3>
+        <!--img와 다르게 video, audio 등은 빈 태그가 아니기에 자식요소(태그) 올 수 있-->
+        <!--autoplay 실행하려면 muted(음소거) 같이 넣어줘야-->
+        <!--poster :썸네일-->
+        <video src="./video/sample-mp4-file.mp4" controls autoplay muted poster="https://via.placeholder.com/300">
+            Sorry, your browser doesn't support embedded videos.
+        </video>    
+        <h3>canvas, iframe</h3>
+        <p>
+            canvas : html에서 마크업 정도만 가능. 나머지는 js로 구현.<br> 
+            iframe : 현재 문서에 다른 html페이지 삽입. api키 얻어 사용할 수 있. 보안 상 안되는 것도 ex)구글맵 
+        </p>
 </body>
 </html>
