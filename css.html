@@ -14,7 +14,10 @@
         }
     </pre>
     <pre>
-        a[href="http://naver.com"]{
+        <!-- ^ : 로 "시작"하는-->
+        <!-- $ : 로 "끝"나는-->
+        <!-- * : "포함"하고 있는-->
+        a[href^="http"]{
 
         }
     </pre>
@@ -23,5 +26,15 @@
             background-color:green;
         }
     </pre>
+    <ul><h2>가상 클래스 선택자</h2></ul>
+    <li>first(last)-child, nth-child(수, or 함수(ex. 2n, 2n-1, odd, even))</li>
+    <p>
+        .movie:first-child{
+            <span style="color: red;">.movie의 첫 번째(X)</span><br>
+            형제들 중 첫 번째인데 그게 .movie여야함.(O)
+        }
+    </p>
+    <li>first(last)-of-type: first-child 보완, nth-of-type()</li>
+    <p><span style="color: red;">타입 중 첫번째라 타입 여러 개라면 여러 개 모두 선택됨</span></p>
 </body>
 </html>
