@@ -1,0 +1,12 @@
+input[value=":hover"]:hover{
+    background-color: orange;
+}
+input[value=":active"]:active{
+    background-color: green;
+}
+#focus:focus{
+    background-color: pink;
+}
+input[value=":focus"]:focus{
+    background-color: purple;
+}

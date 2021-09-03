@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="css.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <ul>
-        <li>스타일은 뒤쪽에 작성되는 것이 우선시 됨</li>
-        <li>css: 내부작성 style, 외부연결 link</li>
-        <li>script : 내부작성, 외부연결 모두 script</li>
+      <li>스타일은 뒤쪽에 작성되는 것이 우선시 됨</li>
+      <li>css: 내부작성 style, 외부연결 link</li>
+      <li>script : 내부작성, 외부연결 모두 script</li>
     </ul>
-    
-    
+
     <h2>속성선택자</h2>
     <pre>
         a[target]{
@@ -33,15 +40,68 @@
             background-color:green;
         }
     </pre>
-    <ul><h2>가상 클래스 선택자</h2></ul>
-    <li>first(last)-child, nth-child(수, or 함수(ex. 2n, 2n-1, odd, even))</li>
-    <p>
+    <ul>
+      <h2>가상 클래스 선택자</h2>
+      <li>
+        first(last)-child, nth-child(수, or 함수(ex. 2n, 2n-1, odd, even))
+      </li>
+      <p>
         .movie:first-child{
-            <span style="color: red;">.movie의 첫 번째(X)</span><br>
-            형제들 중 첫 번째인데 그게 .movie여야함.(O)
-        }
-    </p>
-    <li>first(last)-of-type: first-child 보완, nth-of-type()</li>
-    <p><span style="color: red;">타입 중 첫번째라 타입 여러 개라면 여러 개 모두 선택됨</span></p>
-</body>
+        <span style="color: red">.movie의 첫 번째(X)</span><br />
+        형제들 중 첫 번째인데 그게 .movie여야함.(O) }
+      </p>
+      <li>first(last)-of-type: first-child 보완, nth-of-type()</li>
+      <p>
+        <span style="color: red"
+          >타입 중 첫번째라 타입 여러 개라면 여러 개 모두 선택됨</span
+        >
+      </p>
+      <li>ㄱ:not(ㄴ) ㄱ중에 ㄴ은 아닌{</li>
+      <li>a:link{, a:visited{</li>
+      <li>:link - :visited - :hover - :active(떼기전까지)순으로 배치해야</li>
+      <input type="text" value=":hover" />
+      <input type="text" value=":active" />
+      <input type="text" value=":focus" />
+      <input type="button" value=":hover" />
+      <input type="button" value=":active" />
+      <input type="button" id="focus" value=":focus" />
+      <li>
+        :enabled :disabled (type=text나 password나 email에서),
+        :checked(type=radio, checkbox)
+      </li>
+    </ul>
+    <ul>
+      <h2>가상 요소 선택자</h2>
+      <li>
+        ::before, ::after, ::first-letter, ::first-line,
+        ::selection(드래그한선택영역)
+      </li>
+    </ul>
+    <ul>
+      <h2>선택자 결합</h2>
+      <li>일반 형제 선택자 결합 ㄱ~ㄴ(ㄴ이 ㄱ의 뒤에 있기만 하면)</li>
+      <li>인접 형제 선택자 결합 ㄱ+ㄴ(ㄴ이 바로 뒤에 있어야)</li>
+      <li>그룹화 ,로 한 번에 css</li>
+      <li>*도 다른 선택자와 결합해 사용 가능</li>
+    </ul>
+    <ul>
+      <h2>상속 제어</h2>
+      <li>
+        자식에서 all:initial; (상속 끊)
+        <ul>
+          <li>내려오던 css 스타일 초기화</li>
+        </ul>
+      </li>
+      <li>
+        부모에서 all:inherit;(상속 받아라)
+        <ul>
+          <li>
+            ex)
+            <pre>.parent *{all:inherit;}</pre>
+          </li>
+        </ul>
+      </li>
+      <li>all:unset; 부모에게 상속 받은 값만 받, 나머지 설정은 초기화</li>
+    </ul>
+  </body>
 </html>
