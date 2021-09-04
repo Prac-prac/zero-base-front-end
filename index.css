@@ -5,6 +5,7 @@ img{
     width: 100px;
     height: 100px;
     display: inline-block;
+    text-align: center;
 }
 #html{
     background-color: red;
@@ -19,6 +20,4 @@ img{
     color: black;
     font-weight: 400;
 }
-.red{
-    color: red;
-}
+

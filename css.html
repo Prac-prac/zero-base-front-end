@@ -104,4 +104,99 @@
       <li>all:unset; 부모에게 상속 받은 값만 받, 나머지 설정은 초기화</li>
     </ul>
   </body>
-</html>
+  <h2>선택자 우선순위</h2>
+  <p>!important>inline>id>>>....>*>inherit<br>
+     1. 선언된곳 2.명시도(적용범위 좁을 수록) 3.코드위치
+  </p>
+  <pre>div{color:red !important;}</pre>
+  <ul><h2>FONT</h2>
+    <li>font마다 line-height(약간의 여백 포함) 다름</li>
+    <li>font 단축속성 size, family 필수
+        <pre>font: 20px 'Times New Roman', Times, serif;</pre>
+        사이에 , 붙이지 않음<br>
+        font: font-style font-weight "font-size"/line-height "font-family"; 순으로<br>
+        작성하지 않은 요소는 initial로
+        <pre>font: italic 100 20px/1.7 'Times New ~</pre>
+        <span class="red">주의 아래와 같이 하면 설정안되고 font-style 초기값.<br>적용하려면 font-style을 밑에 설정해야</span>
+        <pre>.text{font-style: italic; font: 100 20px~;"</pre>
+    </li>
+    <li>letter-spacing, word-spacing</li>
+    <li>text-align 글자 정렬 : 인라인요소 적용 안됨. 그럴경우 감싸고 있는 위 div에 줘야</li>
+    <li>text-indent 들여쓰기 : 마찬가지로 인라인 적용x. inherit yes</li>
+    <li>text-decoration 순서 상관x</li>
+    <li>word-break: 텍스트 오버플로할 때 줄바꿈할건지
+        <ul>
+            <li>break-all; :영어(한중일제외) 줄바꿈</li>
+            <li>keep-all; :한중일. 스페이스 할 때만 끊고 오버플로</li>
+        </ul>
+    </li>
+    <li>text-transform 한국어에는 적용x. 대소문자 조절</li>
+    <ul><h2>길이</h2>
+        <li>절대길이 : px. px로 길이 고정해놓으면 브라우저에서 글자크기 설정 불가능. 그래서 상대길이가 바람직.</li>
+        <li>상대길이
+            <ul>
+                <li>em(%) : 부모의 font-size기준</li>
+                <li>rem : root(html body=브라우저설정)의 font-size</li>
+            </ul>
+            <ul>반응형 디자인할때 사용.<br>
+                뷰포트 가로세로길이 100vw, 100vh로 잡
+                <li>vw,vh</li>
+            </ul>
+        </li>
+        <li>calc()
+          <ul>
+            <li>단위 다른 길이 계산 ex)width:calc(100% - lem);</li>
+            <li>연산자 좌우에 공백 있어야</li>
+          </ul>
+        </li>
+        <li>min(100%,500px), max(,)</li>
+    </ul>
+    <ul>
+      <h2>margin</h2>
+      <li>인라인요소 margin <span class="red">좌우</span>는 설정 가능</li>
+      <li>% : 부모 width의 %</li>
+      <li>마진 상쇄
+        <ul>
+          <li> 요건: 블록요소, margin-top/bottom</li>
+          <li> 더 큰 크기의 마진으로 결합됨</li>
+        </ul>
+        <ol>
+          <li>인접 형제
+            <ul><li>두 형제 요소의 위와 아래 마진이 만나 상쇄. 세로일 때만. 가로는 top-left/right라 상쇄없이</li></ul>
+          </li>
+          <li>부모-자식 요소 간
+            <ul>
+              <li>부모 블록에 border, padding, inline content가 없어서(막을 경계가 없어서) 자식의 margin-top 만날 때</li>
+              <li>부모 블록에 border, padding, inline content가 없고 height가 부모자식 분리못하고 자식의 margin-bottom 만날 때</li>
+            </ul>
+          </li>
+          <li>빈 block
+            <ul>
+              <li>border, padding, content, height 없어 자신의 margin-top과 bottom이 자체적으로 만날때 ex)내용없는 div</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+    <ul><h2>padding : 마진과 달리 음수값 사용x</h2>
+      <li>% : 부모 width의 % <span class="red">주의! padding-top도 width의 %. height의 % 아님</span></li>
+    </ul>
+    <ul><h2>border</h2>
+      <li>border-style 필수 아닌 필수. 미설정 시 none이라 설정 필요</li>
+      <li>순서 상관x</li>
+      <li>cf)outline 박스모델에 속해 있지x. 레이아웃x. 영역 차지x. focus할 때 같이 단순 강조 위한 요소</li>
+    </ul>
+    <ul><h2>border-radius</h2>
+      <li>모서리 원 반지름값</li>
+      <li>%로 하면 각각 width, height의 %로 모서리 원 반지름값</li>
+      <li>두 값이면 왼쪽 대각선, 오른쪽 대각선</li>
+      <a href="#" id="h">hhhh</a>
+    </ul>
+    <ul><h2>box-sizing:border-box;</h2>
+      <li>width,height가 content 영역의 가로세로(X) 아닌 요소 자체(border,padding 포함)의 가로세로(O)가 됨</li>
+      <li>*{box-~;}로 전체로 걸어 많이 사용</li>
+    </ul>
+    <ul><h2>display:none; vs visibility:hidden;</h2>  
+      <li>visibility:hidden은 자리차지</li>
+    </ul>  
+    </html>
