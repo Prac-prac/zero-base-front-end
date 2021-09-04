@@ -131,6 +131,7 @@
         </ul>
     </li>
     <li>text-transform 한국어에는 적용x. 대소문자 조절</li>
+    </ul>
     <ul><h2>길이</h2>
         <li>절대길이 : px. px로 길이 고정해놓으면 브라우저에서 글자크기 설정 불가능. 그래서 상대길이가 바람직.</li>
         <li>상대길이
@@ -198,5 +199,45 @@
     </ul>
     <ul><h2>display:none; vs visibility:hidden;</h2>  
       <li>visibility:hidden은 자리차지</li>
+    </ul> 
+    <ul><h2>레이아웃</h2>
+      <li>float:none; left; right; </li>
+      <li>position:static
+        <ul>
+          <li>normal flow 그냥 디폴트</li>
+          <li><span class="red">position:<strong>static;</strong> 일 때는 top, bottom, left, right 적용 안됨. 무시됨</span></li>
+        </ul>
+      </li>
+      <li>position:relative
+        <ul>
+          <li> static일 때 기준으로. top,bottom 동시 설정 시 bottom 무시, right도 무시됨</li>
+        </ul>
+      </li> 
+      <li>position:absolute
+        <ul>
+          <li> normal flow 벗어나 붕떠 position:static; 아닌 조상 요소 찾아 기준</li>
+          <li>position:static; 아닌 조상 요소 없으면 body 기준</li>
+        </ul>
+      </li>   
+      <li>position:fixed
+        <ul>
+          <li>normal flow 벗어나 붕떠 viewport 기준</li>
+          <li>ex)광고배너</li>
+        </ul>
+      </li>  
+      <li>position:sticky
+        <ul>
+          <li>스크롤 되는 조상의 바로 자식??? body의 자식</li>
+          <li>ex)광고배너</li>
+        </ul>
+      </li> 
+      <li>static 아닌 것이 static보다 위에 뜸, 코드 순서 뒤에 있는 게 위에 뜸</li> 
+    </ul>
+    <ul><h2>overflow</h2>
+      <li>:visible, hidden, scroll, auto</li>
+    </ul>
+    <ul><h2>z-index</h2>
+      <li>양수:위에, 음수:뒤에</li>
+      <li>static 아닌 것이 static보다 위에 뜸, 코드 순서 뒤에 있는 게 위에
     </ul>  
     </html>
