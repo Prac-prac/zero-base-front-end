@@ -151,11 +151,36 @@
         <h2>disabled vs readonly 차이점</h2>
         <p>disabled : 입력X. form 전송X</p>
         <p>readonly : 입력X. 전송O. value 사용으로 값 지정 답정너</p>
+        <h2>input type="number"</h2>
+        <pre>
+        <label for="score">평점: </label>
+        <!-- text일 경우는 minlength, maxlength -->
+        <input type="number" id="score" min="" max="" step="">
+        </pre>
+        <h2>select, option</h2>
+        <p>option value 설정안하면 content가 값이됨<br>
+           값 안 주려면 value="" 해야<br>
+           optgroup으로 option 묶을 수</p>
+        <pre>
+            <optgroup label="~">
+                <option></option>
+            </optgroup>
+        </pre>
+        <h2>input list속성&datalist id: 값목록제공. 값 수정가능. select는 강제, 값수정x</h2>
+        <p>input id와 label for가 엮이는 것처럼, input list와 datalist id가 엮</p>
+        <pre>
+            <label for="movie">좋아하는 영화: </label>
+            <input type="text" id="movie" name="movie" list="movie-list">
+
+            <datalist id="movie-list">
+                <option value="">주토피아</option>
+            </datalist>
+        </pre>
         <h2>meta데이터</h2>
         <p>name,content 이름-값 쌍으로</p>bhj
         <ul><h2>전역속성</h2>
             <li>title : 툴팁</li>
-            <li>data- : 화면에 안보이게 글이나 추가정보 엘리먼트에 담아놓을 수. js에서 접근</li>
+            <li>data-속성이름정의해서붙 : 화면에 안보이게 글이나 추가정보 엘리먼트에 담아놓을 수. js에서 접근. html단독으론 안쓰임</li>
             <li>draggable : boolean속성 아니므로 true 명시</li>
             <li>hidden: display:flex하면 보임</li>
         </ul>    

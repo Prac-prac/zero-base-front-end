@@ -239,5 +239,26 @@
     <ul><h2>z-index</h2>
       <li>양수:위에, 음수:뒤에</li>
       <li>static 아닌 것이 static보다 위에 뜸, 코드 순서 뒤에 있는 게 위에
-    </ul>  
+    </ul>
+    <ul><h2>color</h2>
+      <li>rgba와 다르게 opacity(기본값:1)는 (자식 요소가 상속하진 않지만) 자식요소도 투명하게</li>
+      <li>background-image가 background-color보다 위에
+        <ul>
+          <li>background-repeat: repeat-x, y, no-repeat</li>
+          <li>background-position : x축 y축; 키워드로 하면 순서상관x. 키워드 하나만 적으면 나머지는 자동 center</li>
+          <li>background-origin(배경 시작점) : border-box, padding-box(기본값), content-box</li>
+          <li>background-size 
+            <ul>
+              <li>:length (length)</li>
+              <li>: % 가로에 맞춰서</li>
+              <li>아래 둘 다 이미지 비율 유지하며 요소의 크기에 맞춰짐</li>
+              <li>: contain(다 보이는 걸 목표로. 빈공간o)</li>
+              <li>: cover(맞출 수 있는데까지만 보여줌. 빈공간x)</li>
+            </ul>
+          </li>
+          <li>background(shorthand) : bg-position 뒤에 /bg-size, 마지막은 bg-color</li>
+        </ul>
+      </li>
+    </ul>
+    <ul><h2>transform : 오른쪽부터 적용</h2> 
     </html>
