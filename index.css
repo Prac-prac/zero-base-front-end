@@ -2,6 +2,7 @@ img{
     margin: 170px 0 30px 60px;
 }
 .box{
+    display: flex;
     width: 100px;
     height: 100px;
     display: inline-block;
