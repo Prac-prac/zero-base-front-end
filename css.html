@@ -260,7 +260,23 @@
         </ul>
       </li>
     </ul>
-    <h2>transform : 오른쪽부터 적용
-    <ul><h2>transition</h2></ul>
-    <ul><h2>애니메이션</h2></ul>
+    <h2>transform : 오른쪽부터 적용. 크기 바꾸거나 기울이거나 이동~
+    <ul><h2>transition : A->B로 바뀌는 "과정", 1번</h2>
+      <li>transition-property : ,해서 원하는 대상</li>
+      <li>transition-duration : s, ms ( 1s = 1000ms)</li>
+      <li>transition shorthand로 사용함. 앞쪽 시간이 duration 뒤가 delay</li>
+    </ul>
+    <ul><h2>애니메이션 : 단순 A->B 정도인 transition과 다르게 많은 스타일 전환 가능, 여러번</h2>
+      <li>transition-property 대신 @keyframes만들어놓고 name으로 갖다 씀.</li>
+      <li>간단하게 @keyframes from{}to{}나 %를 사용해 구현</li>
+      <li>shorthand에서 duration과 name은 필수</li>
+      <li>animation-delay : 음수값 가능</li>
+      <li>animation-play-state : paused</li>
+      <li>animation-fill-mode : 애니메이션 시작, 끝 어떤 값 적용될지
+        <ul>
+          <li>forwards 끝을 제어(끝나고 그대로)</li>
+          <li>backwards 시작을 제어(시작을 @keyframes로)</li>
+          <li>both 시작과 끝 모두 제어</li>
+        </ul>
+    </ul>
     </html>
