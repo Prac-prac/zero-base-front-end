@@ -260,7 +260,7 @@
         </ul>
       </li>
     </ul>
-    <h2>transform : 오른쪽부터 적용. 크기 바꾸거나 기울이거나 이동~
+    <h2>transform : 오른쪽부터 적용. 크기 바꾸거나 기울이거나 이동~</h2>
     <ul><h2>transition : A->B로 바뀌는 "과정", 1번</h2>
       <li>transition-property : ,해서 원하는 대상</li>
       <li>transition-duration : s, ms ( 1s = 1000ms)</li>
@@ -278,5 +278,60 @@
           <li>backwards 시작을 제어(시작을 @keyframes로)</li>
           <li>both 시작과 끝 모두 제어</li>
         </ul>
+    </ul>
+    <ul><h2>flexbox : 1차원 직선 정렬</h2>
+      <li>cf)table : 2차원 정렬</li>
+      <li>container와 items 부모자식관계 성립되어야</li>
+      <li>main axis(주축), cross axis(교차축. 주축의 수직축)</li>
+      <li>컨테이너에 설정할 것, 아이템에 설정할 것 다름
+        <ul>
+          <li>컨테이너 속성
+            <ul>
+              <li>flex-direction : 주축의 위치(h,v), 주축의 방향(정,역)
+                <ul>
+                  <li>row(기본값)</li>
+                  <li>row-reverse</li>
+                  <li>column</li>
+                  <li>column-reverse</li>
+                </ul>
+              </li>
+              <li>flex-wrap : 강제한줄배치? 여러줄배치?
+                <ul>
+                  <li>nowrap(기본값) : 강제한줄배치. 아이템들 찌그러짐</li>
+                  <li>wrap : 공간 없으면 다음줄로.</li>
+                  <li>wrap-reverse : 시작점과 끝점 변경</li>
+                </ul>
+              </li>
+              <li>(shorthand)flex-flow : flex-direction flex-wrap 단축속성</li>
+            </ul>
+          </li>
+          <li>아이템 속성
+            <ul>
+              <li>order : 아이템 순서. 기본값 0. 음수가능. 부모 컨테이너 flex나 grid 설정되어 있어야</li>
+              <li>flex-grow(늘어남) : 컨테이너 남는 공간 얼만큼씩 나눠가질 건지. 기본값 0</li>
+              <li>flex-shrink(줄어듦) : 기본값 1.(1:1:~으로 줄어들고있)</li>
+              <li>flex-basis : flex-basis 나머지값을 grow,shink가 나눔. 기본값 요소의 크기만큼. 0으로 하면 grow,shink 그 자체로 사용o</li>
+              <li>(shorthand)flex : 아이템을 컨테이너 공간에 맞추기 위해 크기 키우거나 줄이는 속성
+                <ul>
+                  <li>값 1개일 때
+                    <ul>
+                      <li>&lt;number&gt; : flex-grow</li>
+                      <li>&lt;length&gt;, &lt;%&gt; : flex-basis</li>
+                      <li>none, auto, initial</li>
+                      <li class="red">1,2개의 단위 없는 숫자값 쓸 때, flex-basis값이 auto가 아닌 0이 됨<br>
+                                      flex:1과 flex-grow:1은 grow는 같지만 flex-basis는 0과 auto로 다름</li>
+                    </ul>
+                  </li>
+                </ul>              
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul><h2>display</h2>
+      <li>바깥쪽 앞뒤요소: block, inline, inline-block</li>
+      <li>안쪽 아이템들: flex, grid</li>
+      <li>ex)inline-flex:바깥쪽 관계는 inline 안쪽은 flex(컨테이너에 설정-아이템 아닌)</li>
     </ul>
     </html>
