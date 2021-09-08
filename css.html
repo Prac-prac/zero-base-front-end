@@ -279,7 +279,8 @@
           <li>both 시작과 끝 모두 제어</li>
         </ul>
     </ul>
-    <ul><h2>flexbox : 1차원 직선 정렬</h2>
+    <ul><h2>flexbox : <span class="red">1차원</span> 직선 정렬</h2>
+      <li><strong><span class="red">flex-wrap과 별개로 여러줄X. 두 줄 넘어가면 grid 사용</span></strong></li>
       <li>cf)table : 2차원 정렬</li>
       <li>container와 items 부모자식관계 성립되어야</li>
       <li>main axis(주축), cross axis(교차축. 주축의 수직축)</li>
@@ -303,6 +304,42 @@
                 </ul>
               </li>
               <li>(shorthand)flex-flow : flex-direction flex-wrap 단축속성</li>
+              <li>justify-content : 주축 기준으로 아이템 어떻게 정렬할지
+                <ul>
+                  <li>flex-start(기본값)</li>
+                  <li>flex-end : "주축의 끝<span class="red">->위치</span>"에 정렬(주축 방향:정방향, 오른끝에 붙어서 12345순)<br>
+                      flex-direction의 reverse와는 다름."그냥 아이템들 역순<span class="red">->아이템 정렬(순서)</span>"(주축 방향:역방향, 왼쪽 시작에 54321순). </li>
+                  <li>center</li>
+                  <li>space-between : 시작점 끝점 끝에 딱 붙고 아이템 사이 간격 동일<span class="blue">->메뉴 만들때 유용</span></li>    
+                  <li>space-around : 시작점 끝점 띄어서 아이템 사이 간격 동일</li>
+                </ul>
+              </li>
+              <figure>
+              <img src="img/Screenshot 2021-09-08 at 16.04.31.jpg" alt="justify-content와 align-items의 이해">
+              <figcaption class="red">
+                ▲ justify-content(한줄 내) : 연두색 박스 안에서 items 어떻게 정렬할 건지<br>
+                ▲ align-items(한줄 자체) : 컨테이너 안에 연두색 박스 어디다 둘 건지
+              </figcaption>
+              </figure>
+              <li>교차축에 대한 정렬
+                <ol>
+                  <li>align-items : 1줄일때 -> 여러 줄일 때 적용하면 줄마다 나눠서 한줄씩 각각 적용됨
+                    <ul>
+                      <li>stretch(기본값) : item height 지정안되면 컨테이너 내 높이 다 차지. block 가로처럼</li>
+                      <li>flex-start : 교차축 시작에</li>
+                      <li>flex-end</li>
+                      <li>center</li>
+                    </ul>
+                  </li>
+                  <li>align-content : 기본1줄이지만 flex-wrap을 설정하여 여러줄일때
+                    <ul>
+                      <li>justify-content와 똑같은 값 사용. 여러 줄이라 align-items와 다르게 space-between, space-around 사용</li> 
+                      <li>flex-start, flex-end, center, space-between, space-around</li>
+                    </ul>
+                  </li>
+                </ol>
+              </li>
+              
             </ul>
           </li>
           <li>아이템 속성
@@ -322,8 +359,13 @@
                                       flex:1과 flex-grow:1은 grow는 같지만 flex-basis는 0과 auto로 다름</li>
                     </ul>
                   </li>
+                  <li>값 2개일 때 : 첫번째값 grow여야</li>
+                  <li>initial : 0 1 auto (grid 작동x. 남은공간 채우지x)</li>
+                  <li>auto : 1 1 auto</li>
+                  <li>none : 0 0 auto (늘어나지도 줄어들지도x)</li>
                 </ul>              
               </li>
+              <li>align-self : 한 아이템에만 적용. align-items와 사용하는 키워드 같</li>
             </ul>
           </li>
         </ul>
@@ -333,5 +375,8 @@
       <li>바깥쪽 앞뒤요소: block, inline, inline-block</li>
       <li>안쪽 아이템들: flex, grid</li>
       <li>ex)inline-flex:바깥쪽 관계는 inline 안쪽은 flex(컨테이너에 설정-아이템 아닌)</li>
+    </ul>
+    <ul><h2>grid</h2>
+      <li></li>
     </ul>
     </html>
