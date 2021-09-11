@@ -447,6 +447,16 @@
       </li>
     </ul>
     <ul><h2>grid 단위</h2>
-      <li></li>
+      <li>px과 fr 함께 있으면 절대길이px 적용 후 나머지 비율 적용</li>
+      <li>max-content</li>
+      <li>min-content : 가장 긴 단어 기준</li>
+      <li>갯수 autofill : 유연하게 남는 공간에 들어갈 수 있으면 넣어줌 But 넣어주고도 남았을 때 빈 공간</li>
+      <li>auto-fit : 넣어주고도 남았을 때 비율 맞추고 늘려 빈공간 없이 꽉 채우게</li> 
+      <li>사이즈 mimmax(min,max) : min만큼의 남는 공간 생기면 다음 item 넣어주고, 아니면 max</li>
+      <pre>
+        이렇게 작성하면 빈공간 만들지 않을 수 있음
+        100px만큼 공간 생기면 다음 item 넣, 100px만큼 안 생겼을 때는 비율 맞춰 너비 늘리기만
+        grid-template-columns : repeat(auto-fill, minmax(100px, 1fr));
+      </pre>
     </ul>
     </html>
