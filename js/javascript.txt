@@ -1,6 +1,7 @@
 javascript란
 - 객체 기반의 스크립트 프로그래밍 언어(linebyline으로 수행되는 인터프리터 형식. C,java와 다르게 별도의 컴파일)
 - ECMAScript(웹브라우저 js표준화) 사양을 준수하는 범용 스크립트 언어
+- 자료형 명시적 선언 필요 없는 느슨한, 동적 타입 언어
 
 cpu, 주기억장치 메모리, 보조기억장치 hdd/ssd
 만든 자바스크립트 disk에 파일형태로 저장 -> 컴파일, 인터프리터 등으로 수행(컴퓨터가 이해할 수 있는 언어로 변환) -> 로드되어 메모리에 적재 -> 연산은 cpu요청해 정보 cpu에 올리고 연산 결과 메모리에 저장
@@ -22,9 +23,59 @@ let/const는 hosting 발생하지X
 - 삭제는 delete obj.key;
 - 객체 복사 대상 전체 아닌 주소값만 복사되는 문제. => 전체복사: 얕은복사, 깊은복사
 - 얕은복사 방법1 : 반복문 for문을 통해 일일이 한땀한땀
-- 얕은복사 방법2 : Object.assing({}, 희망객체) 함수 통해 새로운 객체 만들어
+- 얕은복사 방법2 : Object.assing({}, 희망객체) 두 객체 병합해 반환해 주는 함수 통해 새로운 객체 만들어
 - 얕은복사 방법3 : ES6부터 지원하는 전개연산자{... } 이용해
 - 얕은복사 문제점 : 객체 내 또 다른 객체가 있다면 복사되지X => 깊은복사
 - 깊은복사 방법1 : 재귀함수 이용
 - 깊은복사 방법2 : JSON객체 이용. JSON.parse(JSON.stringify(희망객체)); 
                    stringify가 객체를 문자열로 변환하는데 이떄 원본 객체와 참조가 끊김
+                   //stringify : js obj -> string   
+                   //parse : string -> js obj
+
+형 변환
+Number(""); //0
+-Number(null); //0
+Number("문자열"); //NaN
+Number(undefined); //NaN
+
+Boolean()은 "", 0, NaN, null, undefined일 때 false
+
+
+localscope에서 globalscope에서 선언했던 변수 중복선언해서 사용할 수 있
+
+for 확장
+1.for(key받을변수 in 객체) 반복문
+- 객체의 key, value 형태를 반복하여 수행하는데 최적화됨
+- 첫번째부터 마지막까지, 객체의 키 개수만큼 반복
+
+2.for(.. of ~) 반복문
+- Collection 객체 자체가 Symbol.iterator 속성을 가지고 있어야 동작 가능한 유형
+- ES6에 새로 추가된 Collection 기반의 반복 구문
+
+반복문 Label(반복문 앞에 Label명:) 통해 다중 반복문 한번에 종료 가능
+But 가독성, 로직 망가뜨림으로 현업에서 권장X
+
+
+함수 정의
+1.함수선언식
+function func(arg1, ..argN){
+    expression;
+}
+
+2.함수표현식
+const func = function(arg1, ..argN){
+    expression;
+}
+
+3.화살표함수
+const func = (arg1, ..argN) => expression;
+
+
+js는 매개변수와 인수의 개수 일치하는지 확인x
+매개변수 기본값 설정 가능
+동적 매개변수(다이나믹 파라미터): 함수 내부 arguments 이용해 매개변수 없이도 인수 받아서 배열로 인수값 받아올 수 
+function add(){
+    console.log(arguments); //[arguments]{'0':10, '1':20}
+    console.log(arguments[0]+arguments[1]);
+} 
+add(10, 20);

@@ -5,3 +5,100 @@ const fs = require("fs"); //파일시스템이라는 라이브러리 가져와�
 const input = fs.readFileSync("./js/javascript.txt", "utf8"); //읽을 파일, 변환할 언어
 
 console.log(input);
+
+
+
+let user = {
+    name: "john",
+    age: 23,
+};
+let admin = {};
+
+//얕은복사1 for문 일일이
+for(let key in user){
+    console.log(key);
+    admin[key] = user[key];
+}
+
+//얕은복사2 Object.assing()
+let admin_obj = Object.assign({}, user);
+
+//얕은복사3 {...}전개연산자
+let admin_spread = {...user};
+
+
+
+
+let deepUser = {
+    name: "john",
+    age: 23,
+    sizes: {height: 180, weight: 72},
+};
+
+//깊은복사1 재귀함수 이용한
+function copyObj(obj){
+    let result = {};
+    for(let key in obj){
+        if(typeof obj[key]==="object"){
+            result[key] = copyObj(obj[key]);
+        } else {
+            result[key] = obj[key];
+        }
+    }
+    return result;
+}
+let deepAdmin = copyObj(deepUser);
+
+//깊은복사2 JSON객체(데이터송수신) 이용. stringify(객체->문자열) 원본 객체와 참조 끊
+//stringify : js obj -> string
+//parse : string -> js obj
+let admin_json = JSON.parse(JSON.stringify(deepUser));
+
+
+
+let x=1; let y=2;
+{
+    function scope(){
+        let x=3; let y=4;
+        console.log(x,",",y);
+    }
+scope();
+}
+scope();
+
+
+//for ..in 반복문
+const person = {name: "John", nickname: "Bab", age: 25};
+let text ="";
+//k에 key값 반환됨
+for(k in person){
+    console.log(k); //name \n nickname \n age
+    text += person[k];
+}
+console.log(text); //JohnBab25
+
+//for ..of 반복문 -iterator 속성을 가지고 있어야
+let lang = "JavaScript";
+for(let x of lang){
+    text += x;
+    console.log(x); // J \n a \n ...
+}
+console.log(text); //JavaScript
+
+function add(){
+    console.log(arguments); //[arguments]{'0':10, '1':20}
+    console.log(arguments[0]+arguments[1]);
+} 
+add(10, 20);
+
+
+//재귀함수
+function recursive(num){
+    if(num==0) return;
+    //뺀 게 num에 반영되지 않으니 계속 3을 넣는 꼴이 되어 무한재귀
+    //recursive(num--); //stack size exceeded(스택 초과)
+    //recursive(--num);
+    recursive(num-1);
+    console.log(num);
+}
+recursive(3);
