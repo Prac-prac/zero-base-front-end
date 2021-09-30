@@ -79,3 +79,40 @@ function add(){
     console.log(arguments[0]+arguments[1]);
 } 
 add(10, 20);
+
+
+Number
+- [지수표기]0 대신 e 대체 표기 at아주큰숫자, 작은숫자
+  ex)1e9, 1e-6
+- [진법표기] 0x(16진수), 0o(8진수), 0b(2진수)
+- Number.MAX_SAFE_INTEGER, Number.MIN_SAFE_INTEGER //Infinity, -Infinity
+- Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY
+- Number.NaN === NaN (둘 다 typeof Number) //Nan, NaN
+- [문자열로 형변환] toString(), String(:~), +""
+- [자리수 제한(넘치면 자름)] 소수자리수: toFixed(:n), 정수+소수자리수: toPrecision(:n)
+- [Number 자료형 확인] Number.isNaN(:), Number.isFinite(:)-유한수인지
+- [정수, 실수로 형변환] Number.parseInt(:), Number.parseFloat(:)
+
+
+String
+- 길이: .length
+- \n, \r, \\, \t, \u{}-유니코드
+- 접근: .charAt(index), .charCodeAt(index)-아스키코드값, [index]-배열처럼
+- 검색: .indexOf(substr,(pos)), .lastIndexOf(substr,(pos))-뒤에서부터, .includes(substr), .startsWith(substr,(pos)), .endsWidth(substr,(pos))
+- 변환: .toUpperCase(), .toLowerCase()
+- 치환-원본변경x: 
+    처음 만나는 요소 치환: .replace(origin_str, change_str)
+    정규표현식 활용: .replace(/치환str/g(전체)i(대소문자구분X), change_str)
+- 추출: 
+    위치 기반: .slice(포함,미만), .substring( , )-두 인자 중 더 작은 값을 start로 인식
+    길이 기반: .substr(start, length)
+- 배열로 분할: .split(":", (몇개까지))-어떤기준으로 나누고 싶은지
+               .split("")으로 공란으로 두면 문자열 하나하나를 자르게됨 
+
+
+
+배열
+- 배열 여부 확인: .isArray()
+- 배열 추가/ 삭제: .push(), .pop(), .shift(), .unshift(), .splice(), slice()
+- 탐색: indexOf(), lastIndexOf(), includes()
+- 배열 변형(callback 미사용): .sort(), .reverse(), .join()
