@@ -173,7 +173,7 @@ Map
 - 값 추가/삭제 메서드를 통해서
 - 생성자: new Map()
 - 개수 확인: .size()
-- 요소 추가: .set(key, value)
+- 요소 추가: .set(key, value) -> map 반환돼 체이닝 가능
 - 요소 접근: .get(key)
 - 요소 삭제: .delete(key)
 - 전체 삭제: .clear()
@@ -197,3 +197,70 @@ Map
     console.log(fruits.entries());
 
 - Map <-> Object 변환: Object.entries(obj), Object.fromEntries(map)    
+
+let map_to_obj = Object.fromEntries(fruits);
+let obj_kv = Object.entries(map_to_obj);
+let obj_to_map = new Map(obj_kv);
+
+
+
+Set
+- value만을 저장하며 중복 허용x
+- 생성자: new Set()
+- 개수 확인: .size()
+- 요소 추가: .add(value)
+- 요소 삭제: .delete(value)
+- 전체 삭제: .clear()
+- 요소 존재 여부 확인: .has(value)
+- .keys(), .values(), .entries()
+
+let str = new Set(1,2,3); (X) TypeError: number 1 is not iterable
+let str = new Set([1,2,3]);
+console.log(str);
+
+- 반복문: iterator 속성으로 for...of 
+  .keys() == .values(), entries() 사용 But 그냥 아래와 같이 안쓰고 사용하는게
+  ex)let str = new Set("Hello");
+     for(let item of str){
+         console.log(item);
+     }
+
+
+Math
+- 오일러 상수(e): Math.E
+- PI(파이): Math.PI
+- 절대값: Math.abs()
+- 최대값: Math.max(...)
+- 최소값: Math.min(...)
+다만, 배열을 인수로 받아 최대/최소 구할 땐 apply함수 또는 스프레드문법 사용 필요
+//apply
+Math.max.apply(null, 배열) 
+//spread
+Math.min(...배열)
+- 랜덤 난수 값: Math.random()
+- 제곱: Math.pow(x,y) == **
+- 제곱근: Math.sqrt(:)
+- 소수점 이하 없앰 처리: Math.round(:)반올림, Math.ceil()올림, Math.floor()내림
+
+
+Date
+- Date 객체 생성자: new Date(), new Date(miniseconds), new Date(문자열), new Date(year,month,...,ms)
+    month는 0부터 시작
+- 현재 시간 기준 문자열: Date()
+- 날짜 정보 얻기
+    년: Date.getFullYear()
+    월: Date.getMonth()
+    일: Date.getDate() 
+    시: Date.getHours()
+    분: Date.getMinutes()
+    초: Date.getSeconds()
+    요일 : Date.getDay() 일요일(0)~토요일(6)
+    현재시간 ms로: Date.getTime()
+    현지시간-표준시간 분(min) 차이: Date.getTimezoneOffset()
+- 날짜 정보 설정은 위 get을 set으로    
+    .setFullYear( , , ) 년,월,일 다 설정됨 -> return값 ms
+    .setDate(0) 전 달의 마지막 날
+- 설정 Date.parse(string) parse가 string 받아서 ms로 변환
+    Date.parse("2020-02-31T00:00:00.000Z"); T는 구분기호, 맨 뒤 Z 설정할 경우 UTC+0(표준시간) 기준
+=>Date 함수 전후로 시간 측정해 알고리즘 성능 측정에 많이 씀
+Date.now()-start

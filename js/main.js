@@ -102,3 +102,15 @@ function recursive(num){
     console.log(num);
 }
 recursive(3);
+
+console.log(new Set(1,2,3));
+
+let fruits = new Map(["apple", 50], ["peach", 100]);
+let map_to_obj = Object.fromEntries(fruits);
+let obj_kv = Object.entries(map_to_obj);
+let obj_to_map = new Map(obj_kv);
+console.log(map_to_obj);
+console.log(obj_kv);
+console.log(obj_to_map);
+
+
