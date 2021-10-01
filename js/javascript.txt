@@ -98,7 +98,7 @@ String
 - 길이: .length
 - \n, \r, \\, \t, \u{}-유니코드
 - 접근: .charAt(index), .charCodeAt(index)-아스키코드값, [index]-배열처럼
-- 검색: .indexOf(substr,(pos)), .lastIndexOf(substr,(pos))-뒤에서부터, .includes(substr), .startsWith(substr,(pos)), .endsWidth(substr,(pos))
+- 검색: .indexOf(substr,(from)), .lastIndexOf(substr,(from))-뒤에서부터, .includes(substr), .startsWith(substr,(from)), .endsWidth(substr,(from))
 - 변환: .toUpperCase(), .toLowerCase()
 - 치환-원본변경x: 
     처음 만나는 요소 치환: .replace(origin_str, change_str)
@@ -112,7 +112,88 @@ String
 
 
 배열
+타언어와 다른 연속적인 메모리 공간이 아닌 Hash 기반의 객체(밀집 배열 아닌 희소 배열) 
 - 배열 여부 확인: .isArray()
-- 배열 추가/ 삭제: .push(), .pop(), .shift(), .unshift(), .splice(), slice()
-- 탐색: indexOf(), lastIndexOf(), includes()
+//splice, slice 두번째 인자 다름. 각각 길이와 end(미포함)
+- 배열 추가/ 삭제: .push(), .pop(), .shift(), .unshift(), .splice(start, 몇개, 새로넣을), slice(포함, 미만)
+- 다중 배열 병합 : .concat(arg1, arg2..)
+    ex)fruits.concat(["cherry", "banana"], "mango"); -> [..."cherry", "banana", "mango"]
+- 탐색: indexOf(), lastIndexOf()-뒷방향으로 찾음. 시작 -3으로하면 -4, -5,.. 알아봄, includes()
 - 배열 변형(callback 미사용): .sort(), .reverse(), .join()
+    -내림차순 정렬: .sort()
+    -오름차순 정렬: .reverse()
+    -[배열 값 문자열로] : .join(구분자) 구분자 공란으로 두면 ,가 기본값
+    -[문자열 배열로] : .split(구분자) 
+
+- 배열 반복문 : for ...length(index 접근), for ...of(element 접근), for ...in(key 접근)
+    for(let i=0; i<arr.length; i++){
+        console.log(arr[i]);
+    }
+    for(let ele of arr){
+        console.log(ele);
+    }
+    for(let k of arr){
+        console.log(arr[k]);
+    }
+
+
+생성자 함수
+- 객체 다중으로 찍어낼 때
+- 첫 글자 대문자
+- new해서 -> new 안하면 객체 생성 안되고 undefined 뜸
+function Bread(flavor, price){
+    this.flavor = flavor;
+    this.price = price;
+    this.base = "flour";
+}
+let bread1 = new Bread("cream", 5000);
+console.log(bread1); //Bread{flavor:'cream', price: 5000, base: 'flour'}
+
+- new.target 속성 사용해 new와 함께 호출했는지 확인 가능
+function User(name){
+    console.log(new.target); //new 붙여 호출하면 호출된 객체이름, 안 붙이면 undefined
+    if(!new.target){ //undefined -> false
+        return new User(name);
+    }
+    this.name = name;
+}
+let result = User("john"); 해도 o
+
+
+Collection
+- 구조 혹은 비구조화 형태로 프로그래밍 언어가 제공하는 값을 담을 수 있는 공간
+- iterator 가지고 있
+- js 제공 Collection: 
+    indexed Collection(Array, Typed Array), 
+    keyed Collection(Object, Map, Set, Weak Map, Weak Set)
+
+Map
+- 다양한 자료형의 key 허용, key-value 형태
+- Object 대비(원시형 데이터 아닌 객체형 키도 가능) 다양한 key 사용 가능
+- 값 추가/삭제 메서드를 통해서
+- 생성자: new Map()
+- 개수 확인: .size()
+- 요소 추가: .set(key, value)
+- 요소 접근: .get(key)
+- 요소 삭제: .delete(key)
+- 전체 삭제: .clear()
+- 요소 존재 여부 확인: .has(key)
+- .keys(), .values(), .entries()
+- 반복문 : iterator 속성으로 for...of 
+           .keys(), .values() 사용
+
+    let fruits = new Map(["apple", 50], ["peach", 100]);
+    for(let item of fruits.keys()){
+        console.log(item);
+    }
+    for(let amount of fruits.values()){
+        console.log(amount);
+    }
+    for(let a of fruits){
+        console.log(a);
+    }
+- .entries() 
+    console.log(fruits);
+    console.log(fruits.entries());
+
+- Map <-> Object 변환: Object.entries(obj), Object.fromEntries(map)    
