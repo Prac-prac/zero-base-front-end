@@ -103,14 +103,31 @@ function recursive(num){
 }
 recursive(3);
 
-console.log(new Set(1,2,3));
+//console.log(new Set(1,2,3)); (X) TypeError: number 1 is not iterable
+console.log(new Set([1,2,3]));
 
-let fruits = new Map(["apple", 50], ["peach", 100]);
+
+// let fruits = new Map(["apple", 50], ["peach", 100]); (X. []하나 더) TypeError: Iterator value apple is not an entry object
+let fruits = new Map([["apple", 50], ["peach", 100]]); 
+for(let item of fruits.keys()){
+    console.log(item);
+}
+for(let amount of fruits.values()){
+    console.log(amount);
+}
+for(let a of fruits){
+    console.log(a); // [ 'apple', 50 ] \n [ 'peach', 100 ]
+}
 let map_to_obj = Object.fromEntries(fruits);
 let obj_kv = Object.entries(map_to_obj);
 let obj_to_map = new Map(obj_kv);
-console.log(map_to_obj);
-console.log(obj_kv);
-console.log(obj_to_map);
+console.log(fruits); // Map(2) { 'apple' => 50, 'peach' => 100 }
+console.log(fruits.entries()); // [Map Entries] { [ 'apple', 50 ], [ 'peach', 100 ] }
+
+console.log(map_to_obj); //{ apple: 50, peach: 100 }
+console.log(obj_kv); //[ [ 'apple', 50 ], [ 'peach', 100 ] ]
+console.log(obj_to_map); //Map(2) { 'apple' => 50, 'peach' => 100 }
+
+
 
 

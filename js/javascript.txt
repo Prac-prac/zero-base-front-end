@@ -182,26 +182,29 @@ Map
 - 반복문 : iterator 속성으로 for...of 
            .keys(), .values() 사용
 
-    let fruits = new Map(["apple", 50], ["peach", 100]);
+    let fruits = new Map([["apple", 50], ["peach", 100]]);
+    //전체적으로 for문 돌릴 땐 Enter 쳐서 나오네
     for(let item of fruits.keys()){
         console.log(item);
     }
     for(let amount of fruits.values()){
         console.log(amount);
     }
-    for(let a of fruits){
-        console.log(a);
+    for(let a of fruits(==fruits.entries())){ //key-value형태로 entity 하나하나 반환. 
+        console.log(a); // [ 'apple', 50 ] \n [ 'peach', 100 ]
     }
 - .entries() 
-    console.log(fruits);
-    console.log(fruits.entries());
+    console.log(fruits); // Map(2) { 'apple' => 50, 'peach' => 100 }
+    console.log(fruits.entries()); // [Map Entries] { [ 'apple', 50 ], [ 'peach', 100 ] }
 
 - Map <-> Object 변환: Object.entries(obj), Object.fromEntries(map)    
 
 let map_to_obj = Object.fromEntries(fruits);
 let obj_kv = Object.entries(map_to_obj);
 let obj_to_map = new Map(obj_kv);
-
+console.log(map_to_obj); //{ apple: 50, peach: 100 }
+console.log(obj_kv); //[ [ 'apple', 50 ], [ 'peach', 100 ] ]
+console.log(obj_to_map); //Map(2) { 'apple' => 50, 'peach' => 100 }
 
 
 Set
