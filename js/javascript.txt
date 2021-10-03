@@ -80,6 +80,10 @@ function add(){
 } 
 add(10, 20);
 
+재귀함수에서 중요한 것 탈출 코드
+콜백함수: 다른함수의 매개변수로 전달되는
+고차함수: 콜백함수 받아 호출(실행) or 함수를 리턴하는 함수
+
 
 Number
 - [지수표기]0 대신 e 대체 표기 at아주큰숫자, 작은숫자
@@ -135,6 +139,14 @@ String
     for(let k of arr){
         console.log(arr[k]);
     }
+
+대표 배열 조작 메서드
+임의 정렬: .sort(callback func) reverse는 callback 안받음
+반복 작업-배열 요소별 콜백함수 각각 실행: .forEach()
+콜백함수 결과 배열 반환: .map()
+조건 만족하는 하나의 값으로 반환: .find()
+조건 만족하는 값 배열로 반환: .filter()
+누적 결과 값 반환: .reduce()
 
 
 생성자 함수

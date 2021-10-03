@@ -92,16 +92,53 @@ function add(){
 add(10, 20);
 
 
-//재귀함수
+//재귀함수: 재귀함수에서 중요한 것 탈출 코드
 function recursive(num){
     if(num==0) return;
     //뺀 게 num에 반영되지 않으니 계속 3을 넣는 꼴이 되어 무한재귀
     //recursive(num--); //stack size exceeded(스택 초과)
     //recursive(--num);
+    //console.log(num); // 1\n2\n3 순으로 출력
     recursive(num-1);
-    console.log(num);
+    console.log(num); // 3\n2\n1 순으로 출력
 }
 recursive(3);
+
+
+function resum(num){
+    if(num==0) return 0;
+    return num + resum(num-1);
+}
+console.log(resum(3));
+    
+/*
+    실행과정을 따라가보면,
+    resum(3)일 때 return으로 3+resum(2)
+    resum(2)일 때 return으로 2+resum(1)
+    resum(1)일 때 return으로 1+resum(0)
+    resum(0)일 때 return으로 0
+*/
+
+
+function facto(num){
+    if(num==1) return 1;
+
+    return num*facto(num-1);
+}
+console.log("facto",facto(3));
+
+
+
+//배열 대표함수
+//sort, reverse 문제점
+let arr = [1, -1, 4, 0, 2, 3, 10];
+console.log(arr.sort()); //10 다음에 2 나옴
+console.log(arr.reverse()); 
+// -> 1. 정렬될 때 배열의 요소 문자열로 변경해 나열
+// 2. 대소문자 구분되어 정렬
+
+
+
 
 //console.log(new Set(1,2,3)); (X) TypeError: number 1 is not iterable
 console.log(new Set([1,2,3]));
