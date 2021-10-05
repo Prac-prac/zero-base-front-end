@@ -128,16 +128,7 @@ function facto(num){
 console.log("facto",facto(3));
 
 
-
-//배열 대표함수
-//sort, reverse 문제점
-let arr = [1, -1, 4, 0, 2, 3, 10];
-console.log(arr.sort()); //10 다음에 2 나옴
-console.log(arr.reverse()); 
-// -> 1. 정렬될 때 배열의 요소 문자열로 변경해 나열
-// 2. 대소문자 구분되어 정렬
-
-
+//배열 대표함수 고차함수 -> array_func.js에 수록
 
 
 //console.log(new Set(1,2,3)); (X) TypeError: number 1 is not iterable

@@ -1,10 +1,13 @@
-//배열 대표함수
-//1. sort 고차함수 
+//배열 대표함수 고차함수 - map과 reduce 잘
+//sort, reverse 문제점
+// 1. 정렬될 때 배열의 요소 문자열로 변경해 나열(숫자 정렬 X)
+// 2. 대소문자 구분되어 정렬
 let arr = [1, -1, 4, 0, 2, 3, 10];
 let fruits = ["Orange", "orange", "apple", "banana"];
-console.log(arr.sort()); 
+console.log(arr.sort()); //10 다음에 2 나옴
 console.log(arr.reverse()); 
 
+//1. sort 고차함수 
 //return 양수값 자리바꿈
 let num_ascending_order = function(x,y){return x-y;}; 
 let num_descending_order = function(x,y){return y-x;};

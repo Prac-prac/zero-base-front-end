@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th,tr,td{border: solid 1px black;}
+        caption{visibility: hidden;}
+    </style>
+</head>
+<body>
+    <!-- 제출방법 : 해당 글(미션2)에 깃헙 링크를 제출
+
+
+아래 요구사항을 모두 반영하여, 접근성 높은 데이터 테이블을 제작해보세요.
+과제는 본인의 깃헙에 작성한 후, 해당 글(미션2)에 링크를 제출하세요.
+
+
+*요구사항
+1. 본인이 생각했을 때, 접근성이 좋지 않은 테이블이 있는 웹페이지를 선정 (현재 서비스 중인 웹페이지로 선정)
+2. 웹표준 준수 및 웹접근성 관점에서 기존 서비스의 문제점 분석
+3. 해상 이슈를 WCAG 가이드라인에 맞춰 수정 계획 선정
+4. 웹접근성 관련 체크리스트 작성
+5. HTML/CSS를 활용하여 구현(자바스크립트는 선택사항)
+6. 문법 검사 결과 제출
+7. 라이트하우스에서 접근성 및 SEO 관련 분석 리포트 제출
+8. 프로젝트 완료 후기(시행착오 및 성장기)
+
+++ 아래 링크는 접근성 높은 데이터 테이블의 예시입니다. 왜 참고 사례로 소개해드리는지에 대해서도 함께 생각해보시면 좋을 것 같습니다.
+https://parcel.epost.go.kr/parcel/use_guide/charge_1.jsp
+ -->
+
+<p>
+    시각 능력에 문제가 없다면 브라우저를 통해 table을 보면 되지만,<br>
+    시각 장애인 분들은 스크린 리더기를 통해 표에 대한 정보를 듣는다.<br>
+    그 점을 고려해서 테이블을 만들 때 생각해두면 좋은 몇 가지가 있는데, 첫 번째는 table의 각 셀에 대한 scope를 지정하는 것이다.<br>
+    각 위치마다 scope 프로퍼티에 col,row,rowgroup, colgroup를 명시해 데이터를 읽어내려가는 순서를 만들 수 있다.<br>
+    웹표준 준수 및 웹접근성 관점에서 <a href="https://www.twayair.com/app/serviceInfo/feeInfo">티웨이항공</a> 사이트의 table이 아쉬웠는데,<br>
+    아래와 같이 읽어내려가는 순서를 고려하여 scope를 주었다.
+    
+    두 번째로는 caption 태그 작성인데, summary의 경우는 html5에서는 사라졌으므로 작성하지 않고 제목을 나타내는 caption을 작성한다.<br>
+    주의할 점은 caption을 화면 상 나타내지 않기 위해 display를 설정할 수 있는데, 이때 none을 주면 안 된다.<br>
+    리더기가 display:none; 부분을 인식하지 못할 수 있기 때문에 visibility: hidden;을 이용하는 것이 적합하다.
+    
+</p>
+
+
+<table class="tb_col fare">
+    <caption>운임요금 정보 - 노선, 항목, 주중운임, 주말운임, 탄력 할증운임, 성수기운임으로 구성된 표</caption>
+    <colgroup>
+        <col style="width:300px">
+        <col style="width:164px">
+        <col style="width:auto">
+        <col style="width:auto">
+        <col style="width:auto">
+        <col style="width:auto">
+    </colgroup>
+    <thead>
+        <tr>
+            <th scope="col">노선</th>
+            <th scope="col">항목</th>
+            <th scope="col">주중 운임</th>
+            <th scope="col">주말 운임</th>
+            <th scope="col">탄력 할증 운임</th>
+            <th scope="col">성수기 운임</th>
+        </tr>
+    </thead>
+<tbody>
+        <tr>
+            <th rowspan="4" scope="rowgroup">
+                <!-- 노선 -->
+                <div class="service_section_box">
+                    <div class="service_name first">
+                        <h4 class="hide">출발지</h4>
+                        <strong class="tit">GMP</strong>
+                        <span class="addition">서울/김포</span>
+                    </div>
+                    <div class="service_exp"></div>
+                    <div class="service_name last">
+                        <h4 class="hide">도착지</h4>
+                        <strong class="tit">CJU</strong>
+                        <span class="addition">제주</span>
+                    </div>
+                </div>
+                <!--// 노선 -->
+                <button class="btn_cont red" onclick="javascript:goToSearchItinerary('GMP','CJU');">예약</button>
+            </th>
+            <td scope="row">항공 운임</td>
+            <td>KRW 70,000</td>
+            <td>KRW 85,000</td>
+            <td>KRW 106,000</td>
+            <td>KRW 106,000</td>
+        </tr>
+        <tr>
+            <td scope="row">공항시설 사용료</td>
+            <td>KRW 4,000</td>
+            <td>KRW 4,000</td>
+            <td>KRW 4,000</td>
+            <td>KRW 4,000</td>
+        </tr>
+        <tr>
+            <td scope="row">유류할증료</td>
+            <td>KRW 4,400</td>
+            <td>KRW 4,400</td>
+            <td>KRW 4,400</td>
+            <td>KRW 4,400</td>
+        </tr>
+        <tr>
+            <td scope="row">총액 운임</td>
+            <td>KRW 78,400</td>
+            <td>KRW 93,400</td>
+            <td>KRW 114,400</td>
+            <td>KRW 114,400</td>
+        </tr>
+    <tbody>             
+            
+        
+ 
+</table>
+</body>
+</html>

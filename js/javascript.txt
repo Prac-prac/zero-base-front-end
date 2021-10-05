@@ -140,7 +140,7 @@ String
         console.log(arr[k]);
     }
 
-대표 배열 조작 메서드
+대표 배열 조작 메서드 - array_func.js에 수록
 임의 정렬: .sort(callback func) reverse는 callback 안받음
 반복 작업-배열 요소별 콜백함수 각각 실행: .forEach()
 콜백함수 결과 배열 반환: .map()
