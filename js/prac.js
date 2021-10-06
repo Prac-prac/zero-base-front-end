@@ -279,3 +279,49 @@ let inputK = [
 for(let i=0; i<inputK.length; i++){
     console.log(`#${i+1} ${answerK(inputK[i])}`);
 }
+
+
+
+
+
+//수학
+//순열
+//1. 반복문으로
+let pArray=["a", "b", "c"]
+let pCount=0;
+
+function permutation(arr){
+    for(let i=0; i<arr.length; i++){
+        for(let j=0; j<arr.length; j++){
+            if(i==j) continue;
+            for(let k=0; k<arr.length; k++){
+                if(i==k) continue;
+                if(j==k) continue;
+            
+                console.log(arr[i], arr[j], arr[k]);
+                pCount++;
+            }
+        }
+    }
+}
+permutation(pArray);
+console.log(pCount);
+
+//2.재귀함수로
+let ppCount=0;
+//s 시작 위치
+//r 몇 개 뽑. 도착해야할 index
+function ppermutation(arr, s, r){
+    if(s==r){
+        pCount++;
+        console.log(arr.join(" "));
+        return;
+    }
+    for(let i=s; i<arr.length; i++){
+        [arr[s], arr[i]] = [arr[i], arr[s]]; //두번째요소선택
+        ppermutation(arr, s+1, r);
+        [arr[s], arr[i]] = [arr[i], arr[s]];
+    }
+}
+ppermutation(pArray);
+console.log(ppCount);
