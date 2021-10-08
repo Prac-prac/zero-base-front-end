@@ -313,7 +313,7 @@ let ppCount=0;
 //r 몇 개 뽑. 도착해야할 index
 function ppermutation(arr, s, r){
     if(s==r){
-        pCount++;
+        ppCount++;
         console.log(arr.join(" "));
         return;
     }
@@ -323,5 +323,5 @@ function ppermutation(arr, s, r){
         [arr[s], arr[i]] = [arr[i], arr[s]];
     }
 }
-ppermutation(pArray);
+ppermutation(pArray, 0, 2);
 console.log(ppCount);

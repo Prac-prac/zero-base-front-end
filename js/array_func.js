@@ -53,7 +53,7 @@ console.log(arr.map(function(ele){
     return ele*2;
 }))
 
-//4. find() 고차함수 - return에 조건쓰고 true되는 값 반환. if처럼 쓰여서 신기
+//4. find() 고차함수 - return에 조건쓰고 true되는 첫 번째 값 하나 반환. if처럼 쓰여서 신기
 // .find(function(ele, index, array){})
 let users = [
     {name: "bob", age: 17, job: false},
@@ -63,7 +63,7 @@ let users = [
 
 let find_job = users.find(function(ele){
     return ele.job==false;
-})
+});
 console.log(find_job); //{name:'bob',...}
 
 let find_age = users.find(function(ele){
@@ -86,3 +86,20 @@ let sum = arr.reduce(function(acc, ele, index, array){
 //}, 0); ->index 0부터
 console.log(call_count);
 console.log(sum);
+
+
+//7. some() - return에 조건 쓰고 하나라도 만족 true, 빈 배열일 경우에도 false
+// .some(function(ele, index, arr){})
+let users = [
+    {name: "bob", age: 17, job: false},
+    {name: "alice", age: 19, job: false},
+    {name: "john", age: 27, job: true},
+];
+
+let find_job = users.some(function(ele){
+    return ele.job==false;
+});
+
+//8. every() - return에 조건 쓰고 모두 만족 true, (중요!)빈 배열일 경우 true
+let empty = [].every(ele => ele>16);
+console.log(empty);
