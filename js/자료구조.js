@@ -194,3 +194,144 @@ ll.printNode();
 // 노드 추가: .append(), .insert()
 // .remove(), removeAt()
 // .indexOf()
+function DoubleNode(data){
+    this.data = data;
+    this.next = null;
+    this.prev = null;
+}
+function DoubleLinkedList(){
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+}
+DoubleLinkedList.prototype.size = function(){
+    return this.length;
+};
+DoubleLinkedList.prototype.imEmpty = function(){
+    return this.length===0;
+}
+
+let dll = new DoubleLinkedList();
+let node = new DoubleNode(123);
+dll.head = node;
+dll.tail = node;
+dll.length++;
+
+node = new DoubleNode(456);
+//서로. 앞next, 뒤prev
+dll.tail.next = node; //현재 dall.tail=new DoubleNode(123);
+node.prev = dll.tail;
+//tail 위치 바꿔줌
+dll.tail = node;
+dll.length++;
+console.log(dll);
+
+
+
+DoubleLinkedList.prototype.printNode = function(){
+    process.stdout.write("head -> ");
+    // this.length까지로 잡으면 안됨. 지금 i 숫자 아님
+    for(let i=this.head; i!=null; i=i.next){
+        process.stdout.write(`${i.data} -> `);
+    }
+    console.log("null");
+}
+
+dll.printNode();
+
+
+DoubleLinkedList.prototype.printNodeInverse = function(){
+    let temp = [];
+
+    process.stdout.write("null <- ");
+    for(let i=this.tail; i != null; i=i.prev){
+        temp.push(i.data);
+    }
+    //뒤에서부터 빼야
+    for(let i=temp.length-1; i>=0; i--){
+        process.stdout.write(`${temp[i]} <- `);
+    }
+    console.log("tail");
+}
+dll.printNodeInverse();
+
+
+DoubleLinkedList.prototype.append = function(value){
+    let node = new Node(value);
+
+    if(this.head === null){
+        this.head = node;
+        this.tail = node;
+    } else {
+        //원래 while을 통해서 끝 찾고 넣었었는데 tail이 있으니 바로 넣. O(1)
+        this.tail.next = node;
+        node.prev = this.tail;
+        this.tail = node;
+    }
+    this.length++;
+}
+
+dll.append(1);
+dll.printNode();
+dll.printNodeInverse();
+
+
+DoubleLinkedList.prototype.insert = function(value, position=0){
+    if(position<0 || position>this.length) return false;
+
+    let node = new Node(value),
+    current = this.head,
+    index = 0,
+    prev;
+
+    if(position===0){
+        if(this.head===null){
+            this.head = node;
+            this.tail = node;
+        } else {
+            node.next = this.head;
+            this.head.prev = node;
+            this.head = node;
+        }
+    } else if(position===this.length){
+        current = this.tail;
+        current.next = node;
+        node.prev = current;
+        this.tail = node;
+    } else {
+        while(index++ < position){
+            prev = current;
+            current = current.next;
+        }
+        //노드 prev - node - current 순
+        node.next = current;
+        prev.next = node;
+
+        current.prev = node;
+        node.prev = prev;
+    }
+    this.length++;
+    return true;
+}
+
+dll.insert(2,1);
+dll.printNode();
+dll.printNodeInverse();
+
+
+
+DoubleLinkedList.prototype.remove = function(value){
+    let current = this.head,
+    prev = current;
+
+    while(current.data != value && current.next != null){
+        prev = current;
+        current = current.next;
+    }
+
+    if(current.data != value) return null;
+    if(current == this.head){
+        this.head = current.next;
+        if(this.length===1) this.tail = null;
+    }
+}
