@@ -55,6 +55,16 @@ function answerB(nums){
     let result=[];
     result = nums.sort((a,b)=>b-a).slice(0,2);
 
+    //배열메서드 안 쓰고 선생님 방법
+    // result = nums[0]>nums[1]? [nums[0], nums[1]]: [nums[1], nums[0]];
+    // for(let i=2; i<nums.length; i++){
+    //     if(nums[i]>result[0]){
+    //         result[1] = result[0];
+    //         result[0] = nums[i];
+    //     } else if(nums[i]>result[1]){
+    //         result[1] = nums[i];
+    //     }
+    // }
     return result;
 }
 let inputB = [
@@ -82,18 +92,25 @@ function answerC(dwarf){
     for(let i=0; i<dwarf.length; i++){
         for(let j=i+1; j<dwarf.length; j++){
             if(dwarf[i]+dwarf[j] === difference){
-                index.push(i,j);
+                //index.push(i,j);
+                dwarf.splice(i,1);
+                dwarf.splice(j,1);
+                break; //찾았으면 더 돌지 않게 break
+                //여기서 break는 안쪽 for문만 나감
             }
         }
+        //바깥쪽 for문도 나가도록
+        if(dwarf.length==7) break;
     }
-    for(let i=0; i<dwarf.length; i++){
-        if(i!=index[0] && i!=index[1]){
-            result.push(dwarf[i]);
-        }
-    }
+
+    // for(let i=0; i<dwarf.length; i++){
+    //     if(i!=index[0] && i!=index[1]){
+    //         result.push(dwarf[i]);
+    //     }
+    // }
     
     
-    
+    result = dwarf;
     return result;
 }
 let inputC = [
@@ -102,7 +119,7 @@ let inputC = [
     [3,37,5,36,6,22,19,2,28]
 ];
 for(let i=0; i<inputC.length; i++){
-    process.stdout.write(`#${i+1}`);
+    process.stdout.write(`문제4번 #${i+1}`);
     console.log(answerC(inputC[i]));
 }
 
@@ -111,7 +128,11 @@ for(let i=0; i<inputC.length; i++){
 //문제5. 나무 그리기
 function answerD(height){
     let str="\n";
-
+    for(let i=0; i<height; i++){
+       for(let j=0; j<=height-i-1; j++) str += " ";
+       for(let j=0; j<2*i+1; j++) str += "*";
+       str += "\n";
+    }
     return str;
 }
 let inputD=[
@@ -120,11 +141,12 @@ let inputD=[
 for(let i=0; i<inputD.length; i++){
     console.log(`#${i+1} ${answerD(inputD[i])}`);
 }
-
+console.log(" ")
 
 //문제6. Two Sum
 function answerE(nums, target){
     let result=[];
+    //for문 2개 O(n^2)
     for(let i=0; i<nums.length; i++){
         for(let j=i+1; j<nums.length; j++){
             if(nums[i]+nums[j] === target){
