@@ -198,17 +198,16 @@ for(let i=0; i<inputF.length; i++){
 function answerG(blocks){
     let result=0;
     let sum=0;
-    let cnt=0;
+    
     blocks.forEach(function(ele){
         sum += ele;
     });
     let avg = sum/blocks.length;
     for(let i=0; i<blocks.length; i++){
         if(blocks[i] - avg>0){
-            cnt += blocks[i] - avg;
+            result += blocks[i] - avg;
         }
-    }
-    result = cnt;
+    }  
     return result;
 }
 let inputG = [
@@ -223,17 +222,35 @@ for(let i=0; i<inputG.length; i++){
 
 //문제9. 숫자 빈도수 구하기
 function answerH(s,e){
-    let result=[0,0,0,0,0,0,0,0,0,0];
-    let gap=[];
-    for(let i=s; i<=e; i++){
-        gap.push(i);
+    let result=[];
+    console.log(typeof result);
+    //선생님 풀이 - 이중 반복문 사용 않고
+    for(let i=0; i<10; i++){
+        result[i] = 0;
     }
-    let toString = gap.join('');
-    for(let i=0; i<=toString.length; i++){
-        for(let j=0; j<=9; j++){
-            if(j==toString[i]) {result[j]+=1;}
+    
+    let num;
+    for(let i=s; i<=e; i++){
+        num = i;
+        while(num != 0){
+            result[num % 10]++; //나머지 result에 0,1,2,3,...별로
+            num /= 10; //몫 구해서
+            num = parseInt(num); //소수점 버리고 다시 while로. 소수점은 위에서 num % 10하고 result로 넘긴 나머지임
+
         }
     }
+    // let result=[0,0,0,0,0,0,0,0,0,0];
+    // let gap=[];
+    // for(let i=s; i<=e; i++){
+    //     gap.push(i);
+    // }
+    // let toString = gap.join('');
+    // for(let i=0; i<=toString.length; i++){
+    //     for(let j=0; j<=9; j++){
+    //         if(j==toString[i]) {result[j]+=1;}
+    //     }
+    // }
+    
     return result;
 }
 let inputH=[
@@ -246,11 +263,33 @@ for(let i=0; i<inputH.length; i++){
 }
 
 
-//문제10. 달팽이 만들기
+//문제10. 달팽이 만들기 - 2차원 배열 다루기
 function answerI(length){
     let result=[];
 
+    for(let i=0; i<length; i++) result[i] = []; //입력받은 length만큼 2차원 배열 넣
+    //예를 들어, length=4이면 4x4이고 배열 4개 만들어 넣어야 됨
 
+    let direction = 1;
+    let x = -1; //-1부터 시작해야 direction 때문에 +1돼서 0부터 시작할 수 있음
+    let y, num;
+    y = num = 0;
+
+    while(1){
+        for(let i=0; i<length; i++){
+            x += direction; //오른쪽으로 한칸씩
+            result[y][x] = ++num;
+        }
+        length--;
+
+        if(length<=0) break;
+
+        for(let i=0; i<length; i++){
+            y += direction;
+            result[y][x] = ++num;
+        }
+        direction *= -1; //방향 바꿔 오,위였으면 왼,아래로 
+    }
     return result;
 }
 let inputI = [3,5,6];
