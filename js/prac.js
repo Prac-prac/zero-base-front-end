@@ -325,3 +325,17 @@ function ppermutation(arr, s, r){
 }
 ppermutation(pArray, 0, 2);
 console.log(ppCount);
+
+
+//조합
+let inputC = [1,2,3,4];
+let cnt = 0;
+function combination(arr){
+    for(let i=0; i<arr.length; i++){
+        for(let j=i+1; j<arr.length; j++){
+            cnt++;
+            console.log(arr[i], arr[j]);
+        }
+    }
+}
+combination(inputC);
