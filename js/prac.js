@@ -328,7 +328,7 @@ console.log(ppCount);
 
 
 //조합
-let inputC = [1,2,3,4];
+let inputCo = [1,2,3,4];
 let cnt = 0;
 function combination(arr){
     for(let i=0; i<arr.length; i++){
@@ -338,4 +338,4 @@ function combination(arr){
         }
     }
 }
-combination(inputC);
+combination(inputCo);
