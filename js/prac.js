@@ -318,7 +318,9 @@ function ppermutation(arr, s, r){
         return;
     }
     for(let i=s; i<arr.length; i++){
+        console.log('1-', arr[s], arr[i]);
         [arr[s], arr[i]] = [arr[i], arr[s]]; //두번째요소선택
+        console.log('2-', arr[s], arr[i]);
         ppermutation(arr, s+1, r);
         [arr[s], arr[i]] = [arr[i], arr[s]];
     }
