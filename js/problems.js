@@ -136,6 +136,3 @@ function solution(str){
     return arr;
 }
 
-let a = Number("-1234")
-console.log(Number("-1234"));
-console.log(typeof Number("-1234"));
