@@ -335,3 +335,151 @@ DoubleLinkedList.prototype.remove = function(value){
         if(this.length===1) this.tail = null;
     }
 }
+
+
+
+//Stack(): 생성자 함수 초기 데이터 설정
+function Stack(array){
+    this.array = array? array: [];
+}
+
+//getBuffer(): 객체 내 데이터 셋 반환
+Stack.prototype.getBuffer = function(){
+    return this.array.slice();
+}
+
+//isEmpty(): 객체 내 데이터 존재 여부 파악
+Stack.prototype.isEmpty = function(){
+    return this.array.length == 0;
+}
+
+let stack = new Stack([1,2,3]);
+console.log(Object.getOwnPropertyDescriptors(Stack.prototype));
+
+Stack.prototype.push = function(ele){
+    return this.array.push(ele);
+}
+
+//데이터 삭제
+Stack.prototype.pop = function(){
+    return this.array.pop();
+}
+
+//가장 끝 데이터 반환
+Stack.prototype.peek = function(){
+    return this.array[this.array.length-1];
+}
+
+Stack.prototype.size = function(){
+    return this.array.length;
+}
+
+Stack.prototype.indexOf = function(ele, position=0){
+    /* case 1 */
+    //return this.array.indexOf(ele, position);
+    /* case 2 */
+    for(let i=position; i<ele; i++){
+        if(ele == this.array[i]) return i;
+    }
+    return -1;
+};
+
+Stack.prototype.includes = function(ele, position=0){
+    //return this.array.includes(ele, position);
+
+    for(let i=position; i<ele; i++){
+        if(ele == this.array[i]) return true;
+    }
+    return false;
+}
+
+
+
+
+//큐
+function Queue(array){
+    this.array = array? array: [];
+}
+
+//getBuffer(): 객체 내 데이터 셋 반환
+Queue.prototype.getBuffer = function(){
+    return this.array.slice();
+}
+
+Queue.prototype.isEmpty = function(){
+    return this.array.length == 0;
+}
+
+Queue.prototype.enqueue = function(ele){
+    return this.array.push(ele);
+}
+
+Queue.prototype.dequeue = function(){
+    return this.array.shift();
+}
+
+//가장 첫 데이터 반환
+Queue.prototype.front = function(){
+    return this.array.length == 0? undefined: this.array[0];
+};
+
+Queue.prototype.size = function(){
+    return this.array.length;
+}
+//큐 초기화
+Queue.prototype.clear = function(){
+    this.array = [];
+}
+
+
+
+
+// 우선순위 큐
+// 데이터와 우선순위 저장 위한
+function Element(data, priority){
+    this.data = data;
+    this.priority = priority;
+}
+//Element 관리
+function PriorityQueue(){
+    this.array = [];
+}
+
+PriorityQueue.prototype.getBuffer = function(){
+    return this.array.map(ele => ele.data);
+}
+
+PriorityQueue.prototype.isEmpty = function(){
+    return this.array.length == 0;
+}
+
+console.log(Object.getOwnPropertyDescriptors(Element.prototype));
+console.log(Object.getOwnPropertyDescriptors(PriorityQueue.prototype));
+
+
+
+//enqueue()
+PriorityQueue.prototype.enqueue = function(data, priority){
+    let element = new Element(data, priority);
+    let added = false;
+
+    for(let i=0; i<this.array.length; i++){
+        if(element.priority < this.array[i].priority){
+            this.array.splice(i,0,element);
+            added = true;
+            break;
+        }
+    }
+
+    if(!added){
+        this.array.push(element);
+    }
+
+    return this.array.length;
+}
+
+//dequeue()
+PriorityQueue.prototype.dequeue = function(){
+    return this.array.shift();
+}
+
