@@ -483,3 +483,22 @@ PriorityQueue.prototype.dequeue = function(){
     return this.array.shift();
 }
 
+//front(): 가장 첫 데이터 반환
+PriorityQueue.prototype.front = function(){
+    return this.array.length == 0? undefined: this.array[0].data;
+}
+
+PriorityQueue.prototype.size = function(){
+    return this.array.length;
+}
+
+//큐 초기화
+PriorityQueue.prototype.clear = function(){
+    this.array = [];
+}
+
+
+//원형 큐
+//isFull() 추가됨
+//head, tail: 빈칸
+//length: 들어있는 size:총
