@@ -378,7 +378,7 @@ Stack.prototype.indexOf = function(ele, position=0){
     /* case 1 */
     //return this.array.indexOf(ele, position);
     /* case 2 */
-    for(let i=position; i<ele; i++){
+    for(let i=position; i<this.array.length; i++){
         if(ele == this.array[i]) return i;
     }
     return -1;
@@ -387,7 +387,7 @@ Stack.prototype.indexOf = function(ele, position=0){
 Stack.prototype.includes = function(ele, position=0){
     //return this.array.includes(ele, position);
 
-    for(let i=position; i<ele; i++){
+    for(let i=position; i<this.array.length; i++){
         if(ele == this.array[i]) return true;
     }
     return false;
@@ -502,3 +502,37 @@ PriorityQueue.prototype.clear = function(){
 //isFull() 추가됨
 //head, tail: 빈칸
 //length: 들어있는 size:총
+function CircularQueue(array=[], size=5){
+    this.array = array;
+    this.size = array.length>size? array.length: size;
+    this.length = array.length;
+    this.head = 0;
+    this.tail = array.length;
+}
+
+CircularQueue.prototype.getBuffer = function(){
+    return this.array.slice();
+}
+
+CircularQueue.prototype.isEmpty = function(){
+    return this.length == 0;
+}
+
+CircularQueue.prototype.isFull = function(){
+    return this.length == this.size;
+}
+
+// console.log(Object.getOwnPropertyDescriptors(CircularQueue.prototype));/
+CircularQueue.prototype.enqueue = function(ele){
+    if(this.isFull()) return false;
+
+    this.array[this.tail % this.size] = ele;
+    this.tail++;
+    this.length++;
+
+    return true;
+}
+
+CircularQueue.prototype.dequeue = function(){
+    if(this.isEmpty()) return undefined;
+}
