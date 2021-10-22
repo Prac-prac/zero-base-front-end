@@ -502,6 +502,7 @@ PriorityQueue.prototype.clear = function(){
 //isFull() 추가됨
 //head, tail: 빈칸
 //length: 들어있는 size:총
+const DEFAULT_SIZE = 5;
 function CircularQueue(array=[], size=5){
     this.array = array;
     this.size = array.length>size? array.length: size;
@@ -535,4 +536,345 @@ CircularQueue.prototype.enqueue = function(ele){
 
 CircularQueue.prototype.dequeue = function(){
     if(this.isEmpty()) return undefined;
+
+    let ele = this.array[this.head % this.size];
+    delete this.array[this.head % this.size];
+    this.head++;
+    this.length--;
+
+    return ele;
+}
+
+CircularQueue.prototype.front = function(){
+    return this.length == 0? undefined: this.array[this.head];
+}
+
+CircularQueue.prototype.dataSize = function(){
+    return this.length;
+}
+
+CircularQueue.prototype.clear = function(size=DEFAULT_SIZE){
+    this.array=[];
+    this.size = size;
+    this.length=0;
+    this.head=0;
+    this.tail=0;
+}
+
+
+
+//데크 : 스택, 큐 합한
+function Deque(array=[]){
+    this.array = array;
+}
+
+Deque.prototype.getBuffer = function(){
+    return this.array.slice();
+}
+
+Deque.prototype.isEmpty = function(){
+    return this.array.length == 0;
+}
+
+Deque.prototype.pushFront = function(ele){
+    return this.array.unshift(ele);
+}
+
+Deque.prototype.popFront = function(){
+    return this.array.shift();
+}
+
+Deque.prototype.pushBack = function(ele){
+    return this.array.push(ele);
+}
+
+Deque.prototype.popBack = function(){
+    return this.array.pop();
+}
+
+Deque.prototype.front = function(){
+    return this.array.length == 0? undefined: this.array[0];
+}
+
+Deque.prototype.back = function(){
+    return this.array.length == 0? undefined: this.array[this.array.length-1];
+}
+
+Deque.prototype.size = function(){
+    return this.array.length;
+}
+
+Deque.prototype.clear = function(){
+    this.array = [];
+}
+
+
+//딕셔너리(feat.파이썬) java에서는 Map
+function Dictionary(items={}){
+    this.items = items;
+}
+
+Dictionary.prototype.getBuffer = function(){
+    return {...this.items};
+}
+
+Dictionary.prototype.clear = function(){
+    this.items = {};
+}
+
+Dictionary.prototype.size = function(){
+    return Object.keys(this.items).length; //keys(): key 배열로 반환
+}
+
+let dict = new Dictionary({age: 19, name:"alice"});
+console.log(dict.size());
+
+
+//해시함수 : 임의의 길이 데이터를 "고정 길이"의 데이터로 매핑
+//특성: 1.가변 길이->고정 길이
+//2. 결과값으로 입력값 찾지 X
+
+//해시테이블: 해시함수 이용해 평균 O(1) 시간복잡도로 특정값 신속하게 찾
+//for문은 O(n)
+//해시테이블 충돌 해결방법
+//방법1. 해시함수 변경: 더 큰 숫자의 공간, % 사용
+//방법2. 자료구조 확장: 선형조사법(이중해시), 체이닝
+const HASH_SIZE = 37;
+
+function Element(key,value){
+    this.key = key;
+    this.value = value;
+}
+
+function HashTable(){
+    this.table = new Array(HASH_SIZE);
+    this.length=0;
+}
+
+//hashCode(): 해시함수
+//key 받아 index 반환
+HashTable.prototype.hashCode = function(key){
+    let hash=5384;
+    for(let i=0; i<key.length; i++){
+        hash += hash*33+ key.charCodeAt(i);
+    }
+    return hash % HASH_SIZE; //index
+}
+
+let ht = new HashTable();
+console.log(ht);
+
+console.log(ht.hashCode("Ana"));
+console.log(ht.hashCode("Sue"));
+
+HashTable.prototype.put = function(key, value){
+    let index = this.hashCode(key);
+    console.log(`key: ${key} -> index: ${index}`);
+
+    if(this.table[index] !== undefined){
+        return false;
+    }
+    this.table[index] = new Element(key, value);
+    this.length++;
+
+    return true;
+}
+
+HashTable.prototype.get = function(key){
+    return this.HashTable[this.hashCode(key)];
+}
+
+HashTable.prototype.remove = function(key){
+    let element = this.table[this.hashCode(key)];
+
+    if(element !== undefined){
+        delete this.table[this.hashCode(key)];
+        this.length--;
+    }
+
+    return element;
+}
+
+HashTable.prototype.clear = function(){
+    this.table = new Array(HASH_SIZE);
+    this.length=0;
+}
+
+HashTable.prototype.size = function(){
+    return this.length;
+}
+
+HashTable.prototype.getBuffer = function(){
+    let array=[];
+    for(let i=0; i<this.table.length; i++){
+        if(this.table[i]){
+            array.push(this.table[i]);
+        }
+    }
+    return array;
+}
+
+HashTable.prototype.print = function(){
+    for(let i=0; i<this.table.length; i++){
+        if(this.table[i]){
+            console.log(i+" -> "
+                + this.table[i].key + ": " + this.table[i].value);
+        }
+    }
+}
+
+ht.put("Ana", 172);
+ht.put("Sue", 163);
+
+ht.print();
+console.log(ht.getBuffer());
+
+
+//해시테이블 충돌 - 방법1. 선형조사법 해시테이블
+//충돌 시 그 다음 주소 확인하고 비어있으면 그 자리에 대신 저장
+//해시테이블 메서드와 동일. 다른 것만 아래에.
+function LinearHashTable(){
+    this.table = new Array(HASH_SIZE);
+    this.length = 0;
+}
+
+//맨 밑 3줄이 다른 부분
+LinearHashTable.prototype.put = function(key, value){
+    let index = this.hashCode(key);
+    let startIndex = index;
+    console.log(`key: ${key} -> index: ${index}`);
+    do{
+        if(this.table[index]===undefined){
+            this.table[index] = new Element(key, value);
+            this.length++;
+            return true;
+        }
+        
+        index = (index+1)%HASH_SIZE;
+
+    }while(index !== startIndex); //한바퀴 돌고 다시 원위치로 왔을 때 그만
+
+    return false;
+}
+
+LinearHashTable.prototype.get = function(key){
+    let index = this.hashCode(key);
+    let startIndex = index;
+
+    do{
+        if(this.table[index] !== undefined && this.table[index].key===key){
+            return this.table[index].value;
+        }
+
+        index = (index+1) % HASH_SIZE;
+    }while(index !== startIndex);
+    return false;
+}
+
+LinearHashTable.prototype.remove = function(key){
+    let index = this.hashCode(key);
+    let startIndex = index;
+
+    do{
+        if(this.table[index] !== undefined && this.table[index].key===key){
+            let element = this.table[index];
+            delete this.table[index];
+            this.length--;
+        
+            return element;
+        }
+
+           index = (index+1) % HASH_SIZE;
+    }while(index !== startIndex);
+    return undefined;
+}
+
+
+//해시테이블 충돌 - 방법2. 체이닝 해시테이블
+//별도의 자료구조인 연결리스트 병합 사용해 
+function ChainingHashTable(){
+    this.table = new Array(HASH_SIZE);
+    this.length = 0;
+}
+
+ChainingHashTable.prototype.put = function(key, value){
+    let index = this.hashCode(key);
+    console.log(`key: ${key} -> index:${index}`);
+
+    if(this.table[index] === undefined){
+        this.table[index] = new LinkedList();
+    }
+    this.table[index].append(new Element(key,value));
+    this.length++;
+    return true;
+}
+
+// let cht = new ChainingHashTable();
+// cht.put("Ana", 172);
+// console.log(cht);
+//데이터 셋 반환
+ChainingHashTable.prototype.getBuffer = function(){
+    let array=[];
+    for(let i=0; i<this.table.length; i++){
+        if(this.table[i]){
+            let current = this.table[i].head;
+            do{
+                array.push(current.data);
+                current = cuurent.next;
+            }while(current); //null을 만날 때까지
+        }
+    }
+    return array;
+}
+//데이터 셋 출력
+ChainingHashTable.prototype.print = function(){
+    for(let i=0; i<this.table.length; i++){
+        if(this.table[i]){
+            let current = this.table[i].head;
+            process.stdout.write(`#${i}`);
+            do{
+                process.stdout.write(` -> 
+                ${current.data.key}: ${current.data.value}`);
+                current = current.next;
+            }while(current);
+            console.log("");
+        }
+    }
+}
+
+ChainingHashTable.prototype.get = function(key){
+    let index = this.hashCode(key);
+    if(this.tablep[index] !== undefined && !this.table[index].isEmpty()){
+        let current = this.tablep[index].head;
+
+        do{
+            if(current.data.key === key){
+                return current.data.value;
+            }
+            current = current.next;
+        }while(current);
+    }
+    return undefined;
+}
+
+ChainingHashTable.prototype.remvoe = function(key){
+    let index = this.hashCode(key);
+    let element = undefined;
+
+    if(this.table[index] !== undefined){
+        let current = this.table[index].head;
+
+        do{
+            if(current.data.key === key){
+                element = current.data;
+                this.table[index].remove(current.data);
+                if(this.array[index].isEmpty()){ //삭제 후 this.array[index] 값 없고 빈껍데기면 지우기
+                    delete this.table[index];
+                }
+            }
+            current = current.next;
+        }while(current);
+    }
+    this.length--;
+    return element;
 }
