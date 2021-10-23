@@ -878,3 +878,39 @@ ChainingHashTable.prototype.remvoe = function(key){
     this.length--;
     return element;
 }
+
+
+//이진트리
+//각 노드가 최대 두 개의 자식 노드 가짐
+//검색과 정렬 위해 주로 사용
+//포화, 완전, 정, 편향, 균형 이진 트리
+//포화: leaf노드 제외한 모든 레벨의 노드 가득 2개씩 2^n-1
+//완전: 마지막 레벨 왼쪽부터 노드 채워진 n<2^n-1
+//정: 노드 0개 or 2개만 가짐
+//편향: 왼쪽or오른쪽으로 편향된. 노드의개수:h
+//균형: 왼쪽 서브트리와 오른쪽 서브트리 높이차 1이하
+
+function Node(value){
+    this.value = value;
+    this.left = null;
+    this.right = null;
+}
+//시작 노드인 root 저장하기 위한
+function BinaryTree(){
+    this.root = null;
+}
+//재귀로 트리 순회하며 노드 추가
+BinaryTree.prototype._insertNode = function(node, value){
+    if(node===null){
+        node = new Node(value);
+    } else if(value < node.value){
+        node.left = this._insertNode(node.left, value);
+    } else if(value >= node.value){
+        node.rigth = this._insertNode(node.right, value);
+    }
+    return node;
+}
+
+BinaryTree.prototype.insert = function(value){
+    this.root = this._insertNode(this.root, value);
+}
