@@ -914,3 +914,16 @@ BinaryTree.prototype._insertNode = function(node, value){
 BinaryTree.prototype.insert = function(value){
     this.root = this._insertNode(this.root, value);
 }
+
+
+//그래프
+//정점(Vertex)과 간선(Edge)으로 구성되어 네트워크 구조를 추상화
+function Graph(){
+    this.edge = {};
+}
+Graph.prototype.addVertex = function(v){
+    this.edge[v] = [];
+}
+Graph.prototype.addEdge = function(v1, v2){
+    this.edge[v1].push(v2);
+}
