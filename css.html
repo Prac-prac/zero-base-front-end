@@ -421,12 +421,58 @@
           <li>justify(주축)-content, align(교차축)-content : 전체 행, 전체 열</li>
           <li>justify-items : 각각의 틀 안에서 각 아이템 어떻게 정렬할지. stretch(기본값); -> 다른값으로 바꾸면 별도 width설정 없으면 컨텐츠 길이만큼 줄어듦</li>
           <li>justify-self : 하나의 아이템에 대한 정렬</li>
+          <pre>
+            html에서는
+            &lt;div class="container">
+            &lt;div class="item">1</div>
+            &lt;div class="item">2</div>
+              &lt;div class="item">3</div>
+              &lt;div class="item">4</div>
+              &lt;div class="item">5</div>
+              &lt;div class="item">6</div>
+            &lt;/div>
+
+            css에서는
+            .container{
+              border: 5px dashed orange;
+
+              width: 100%;
+              heigth: 500px;
+
+              display: grid;
+              grid-template-rows: repeat(3, 1fr);
+              grid-template-columns: repeat(3, 1fr);
+
+              **전체
+              justify-items: end; 로 하면 값 설정 안한 것들 갑자기 홀쭉해짐
+              이유는 기본값이 stretch(차지할 수 있는 자리만큼 힘껏 늘어남)
+              end로 하면 stretch 해제되고 content길이(or 개별설정한 width)만큼 줄어듦
+             
+            }
+
+            .item{
+              background-color: skyblue;
+              border: 3px solid blue;
+              font-size: 24px;
+            }
+
+            .item:nth-child(1){
+              width: 50px;
+              height: 50px;
+            }
+
+            .item:nth-child(2){
+              **개별
+              justify-self: end;
+            }
+            </html>
+          </pre>
         </ul>
       </li>
       <li>아이템 속성
         <ul>
           <li>[shorthand]grid-row : grid-row-start/grid-row-end, grid-column<br>
-            ⇒[shorthand]grid-area
+            ⇒[shorthand]grid-area =>선으로. span 쓰면 칸으로.
             <ul>
               <li>숫자가 행,열(X) grid 몇 번째 선(O). f12눌러확인가능</li>
               <li>1부터 시작. 뒤에서부터는 -1부터 시작. 단 음수는 명시적(template)에서만.(∵추가로 생긴 선에서는 X)<br>
@@ -441,20 +487,35 @@
               <li>[shorthand] : start가 먼저. grid-row-start/grid-column-start/grid-row-end/grid-column-end</li>
             </ol>
           </li>
-          <li>order : 작은 정수가 우선순위. 기본값 0.</li>
+          <li>order : 개체들 순서. 작은 정수가 우선순위. 기본값 0.</li>
           <li>z-index : 높은 정수가 앞으로.</li>
         </ul>
       </li>
     </ul>
     <ul><h2>grid 단위</h2>
       <li>px과 fr 함께 있으면 절대길이px 적용 후 나머지 비율 적용</li>
-      <li>max-content</li>
-      <li>min-content : 가장 긴 단어 기준</li>
-      <li>갯수 autofill : 유연하게 남는 공간에 들어갈 수 있으면 넣어줌 But 넣어주고도 남았을 때 빈 공간</li>
-      <li>auto-fit : 넣어주고도 남았을 때 비율 맞추고 늘려 빈공간 없이 꽉 채우게</li> 
-      <li>사이즈 mimmax(min,max) : min만큼의 남는 공간 생기면 다음 item 넣어주고, 아니면 max</li>
+      <li>내용에 따라
+        <ul>
+          <li>max-content : 한 줄에 볼 수 있게 줄 바꾸지 않고</li>
+          <li>min-content : 가장 긴 단어 기준으로 줄바꿈</li>
+        </ul>
+      </li>
+      <li>컬럼의 개수 유연하게 바꿔줌 auto-fill : 유연하게 남는 공간에 들어갈 수 있으면 넣어줌 But 넣어주고도 남았을 때 빈 공간</li>
+      <li>auto-fit : 넣어주고도 남았을 때 비율 맞추고 늘려 빈공간 없이 꽉 채우게<br>
+          cf)auto-fill은 넣어주고도 컨테이너 빈 공간 남았을 때 비워둠. auto-fit은 남는 공간 없이 채움</li>
+      
       <pre>
-        이렇게 작성하면 빈공간 만들지 않을 수 있음
+        .container{
+          border: 5px dashed orange;
+          display: grid;
+          grid-template-columns: repeat(auto-fill, 100px);
+          grid-auto-rows: 50px;
+        }
+      </pre> 
+      <li>사이즈 함수 mimmax(min,max) : min만큼의 남는 공간 생기면 다음 item 넣어주고, 아니면 max<br>
+                                       ** 모바일 대응처럼 구현할 수</li>
+      <pre>
+        이렇게 작성하면 컨테이너 가로 빈공간 만들지 않을 수 있음
         100px만큼 공간 생기면 다음 item 넣, 100px만큼 안 생겼을 때는 비율 맞춰 너비 늘리기만
         grid-template-columns : repeat(auto-fill, minmax(100px, 1fr));
       </pre>
