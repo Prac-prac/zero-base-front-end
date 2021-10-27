@@ -19,6 +19,7 @@
       <li>스타일은 뒤쪽에 작성되는 것이 우선시 됨</li>
       <li>css: 내부작성 style, 외부연결 link</li>
       <li>script : 내부작성, 외부연결 모두 script</li>
+      <li>숫자값 유형 1.Integer:음수되는 정수 2.Number:소수점 됨</li>
     </ul>
 
     <h2>속성선택자</h2>
@@ -260,7 +261,18 @@
         </ul>
       </li>
     </ul>
-    <h2>transform : 오른쪽부터 적용. 크기 바꾸거나 기울이거나 이동~</h2>
+    <ul><h2>transform : 값 오른쪽부터 왼쪽으로 역순으로 적용. y축 아래로 향해 있음. 크기 바꾸거나 기울이거나 이동~. <br>
+      레이아웃 실질적으로 바뀌지x. img태그 뿐만 아니라 p태그 등도 가능</h2>
+      <ul>값으로 함수
+        <li>크기 scale(Number,(Number))+scaleX, scaleY: 0.5하면 width, height 반으로 줄고 여백 생기게 가운데로</li>
+        <li>회전 rotate(angle)</li>
+        <li>이동 translate(length:px,em,rem../percentage, ()) + translateX, translateY: 인수 하나만 있으면 x,y 적용이 아니라 x만 적용 cf.scale은 x,y 둘 다</li>
+        <li>기울이기 skew(angle, (angle)) + skewX, skewY: 인수 하나면 x만</li>
+      </ul>
+      <ul>독자적 프로퍼티로
+        <li>기준점 설정 transform-origin -> transition이나 애니메이션에 유용하게 사용될 수</li>
+      </ul>
+    </ul>
     <ul><h2>transition : A->B로 바뀌는 "과정", 1번</h2>
       <li>transition-property : ,해서 원하는 대상</li>
       <li>transition-duration : s, ms ( 1s = 1000ms)</li>
