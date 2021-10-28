@@ -273,23 +273,56 @@
         <li>기준점 설정 transform-origin -> transition이나 애니메이션에 유용하게 사용될 수</li>
       </ul>
     </ul>
-    <ul><h2>transition : A->B로 바뀌는 "과정", 1번</h2>
-      <li>transition-property : ,해서 원하는 대상</li>
+    <ul><h2>transition : A->B로 바뀌는 "과정", 1번, 사용자의 action으로 실행됨</h2>
+      <li>transition-property : 바꿀 css 대상 요소. ,해서 원하는 대상 이어서 작성<br>
+            ex)transition-property: all, background-color</li>
       <li>transition-duration : s, ms ( 1s = 1000ms)</li>
-      <li>transition shorthand로 사용함. 앞쪽 시간이 duration 뒤가 delay</li>
+      <li>transition-timing-function: 기본값 ease</li>
+      <li>transition-delay</li>
+      <li>[shorthand]transition: property duration timingfunction delay. 대상 맨 앞에, 시간 duration delay 순으로</li>
     </ul>
-    <ul><h2>애니메이션 : 단순 A->B 정도인 transition과 다르게 많은 스타일 전환 가능, 여러번</h2>
-      <li>transition-property 대신 @keyframes만들어놓고 name으로 갖다 씀.</li>
+    <ul><h2>애니메이션 : 단순 A->B 정도인 transition과 다르게 다수의 스타일 전환 가능, 여러번, 사용자의 action없이 자동으로</h2>
+      <li>transition-property 대신 @keyframes만들어놓고 키프레임즈이름을 animation-name에 갖다 씀.</li>
       <li>간단하게 @keyframes from{}to{}나 %를 사용해 구현</li>
-      <li>shorthand에서 duration과 name은 필수</li>
+      <pre>
+        .클래스{
+          애니메이션 적용시킬 클래스에다 
+          animation: 키프레임즈이름 시간 ~;
+        }
+
+        @keyframes 키프레임즈이름{
+          from{
+
+          }
+          to{
+
+          }
+        }
+
+        @keyframes 키프레임즈이름{
+          0%{}
+          30%{}
+          100%{}
+        }
+      </pre>
       <li>animation-delay : 음수값 가능</li>
-      <li>animation-play-state : paused</li>
+      <li>animation-iteration-count: Number타입(소수점 가능), infinite</li>
+      <li>animation-direction: normal, reverse, alternate, alternate-reverse. 연속 , 찍어서</li>
+      <li>animation-play-state : paused, 기본값 running</li>
       <li>animation-fill-mode : 애니메이션 시작, 끝 어떤 값 적용될지
         <ul>
-          <li>forwards 끝을 제어(끝나고 그대로)</li>
-          <li>backwards 시작을 제어(시작을 @keyframes로)</li>
+          <li>기본값 none</li>
+          <li>forwards 끝을 제어(끝나고 기존스타일로 돌아가지 않고 애니메이션 끝난 그대로)</li>
+          <li>backwards 시작을 제어(시작을 기존스타일이 아닌 @keyframes로)</li>
           <li>both 시작과 끝 모두 제어</li>
         </ul>
+      </li>  
+      <li>shorthand에서 duration과 name은 필수</li>
+    </ul>
+    <ul><h2>display</h2>
+      <li>요소 외부: block, inline, inline-block</li>
+      <li>요소 내부: flex, grid</li>
+      <pre>ex) display: inline-flex;</pre>
     </ul>
     <ul><h2>flexbox : <span class="red">1차원</span> 직선 정렬</h2>
       <li><strong><span class="red">flex-wrap과 별개로 여러줄X. 두 줄 넘어가면 grid 사용</span></strong></li>
@@ -300,7 +333,7 @@
         <ul>
           <li>컨테이너 속성
             <ul>
-              <li>flex-direction : 주축의 위치(h,v), 주축의 방향(정,역)
+              <li>flex-direction : 주축의 위치(수평,수직), 주축의 방향(정,역)
                 <ul>
                   <li>row(기본값)</li>
                   <li>row-reverse</li>
@@ -311,17 +344,22 @@
               <li>flex-wrap : 강제한줄배치? 여러줄배치?
                 <ul>
                   <li>nowrap(기본값) : 강제한줄배치. 아이템들 찌그러짐</li>
-                  <li>wrap : 공간 없으면 다음줄로.</li>
-                  <li>wrap-reverse : 시작점과 끝점 변경</li>
+                  <li>wrap : 공간 없으면 다음줄로. 자신의 크기 잃지 않음.</li>
+                  <li>wrap-reverse</li>
                 </ul>
               </li>
               <li>[shorthand]flex-flow : flex-direction flex-wrap 단축속성</li>
               <li>justify-content : 주축 기준으로 아이템 어떻게 정렬할지
                 <ul>
                   <li>flex-start(기본값)</li>
-                  <li>flex-end : "주축의 끝<span class="red">->위치</span>"에 정렬(주축 방향:정방향, 오른끝에 붙어서 12345순)<br>
-                      flex-direction의 reverse와는 다름."그냥 아이템들 역순<span class="red">->아이템 정렬(순서)</span>"(주축 방향:역방향, 왼쪽 시작에 54321순). </li>
-                  <li>center</li>
+                  <li>flex-end : 주축의 끝<span class="red">("위치"만. 역순x)</span>에 정렬(주축 방향:정방향, 오른끝에 붙어서 12345순)<br>
+                      flex-direction의 reverse와는 다름. reverse는 "아이템들 역순-><span class="red">아이템 정렬(순서)</span>"(주축 방향:역방향, 왼쪽 시작에 54321순). <br>
+                      <span class="red">flex-end는 주축방향 안 바뀜. flex-direction: reverse를 해야 바뀌는 거</span></li>
+                  <pre>
+                    flex-direction: row-reverse; 주축의 방향 오른쪽에서 왼쪽
+                    justify-content: flex-end; 왼쪽이니 왼쪽 끝에 붙어서 54321순
+                  </pre>
+                  <li>center: 주축 기준 가운데</li>
                   <li>space-between : 시작점 끝점 끝에 딱 붙고 아이템 사이 간격 동일<span class="blue">->메뉴 만들때 유용</span></li>    
                   <li>space-around : 시작점 끝점 띄어서 아이템 사이 간격 동일</li>
                 </ul>
@@ -356,26 +394,30 @@
           </li>
           <li>아이템 속성
             <ul>
-              <li>order : 아이템 순서. 기본값 0. 음수가능. 부모 컨테이너 flex나 grid 설정되어 있어야</li>
-              <li>flex-grow(늘어남) : 컨테이너 남는 공간 얼만큼씩 나눠가질 건지. 기본값 0</li>
-              <li>flex-shrink(줄어듦) : 기본값 1.(1:1:~으로 줄어들고있)</li>
-              <li>flex-basis : flex-basis 나머지값을 grow,shink가 나눔. 기본값 요소의 크기만큼. 0으로 하면 grow,shink 그 자체로 사용o</li>
-              <li>[shorthand]flex : 아이템을 컨테이너 공간에 맞추기 위해 크기 키우거나 줄이는 속성
-                <ul>
-                  <li>값 1개일 때
+              <li>order : 아이템 순서. 기본값 0. 작을 수록 앞. 음수가능. 부모 컨테이너 flex나 grid 설정되어 있어야</li>
+              <li>
+                <ul>아이템 늘리거나 줄이는 비율 설정
+                  <li>flex-grow(늘어남) : 컨테이너 남게 두지 않고 공간 얼만큼씩 나눠가짐. 기본값 0(컨테이너 키운다고 늘어나지 않)</li>
+                  <li>flex-shrink(줄어듦) : 기본값 1(컨테이너 줄이면 줆어듦).</li>
+                  <li>flex-basis : flex-basis 나머지값을 grow,shink가 나눔. 기본값 요소의 크기만큼. 0으로 하면 grow,shink 그 자체로 사용o</li>
+                  <li>[shorthand]flex : 아이템을 컨테이너 공간에 맞추기 위해 크기 키우거나 줄이는 속성
                     <ul>
-                      <li>&lt;number&gt; : flex-grow</li>
-                      <li>&lt;length&gt;, &lt;%&gt; : flex-basis</li>
-                      <li>none, auto, initial</li>
-                      <li class="red">1,2개의 단위 없는 숫자값 쓸 때, flex-basis값이 auto가 아닌 0이 됨<br>
-                                      flex:1과 flex-grow:1은 grow는 같지만 flex-basis는 0과 auto로 다름</li>
-                    </ul>
+                      <li>값 1개일 때
+                        <ul>
+                          <li>타입이 &lt;Number&gt;이면 flex-grow  ex)flex:1; 많이 쓰임</li>
+                          <li>타입이 &lt;length&gt;, &lt;percentage&gt;이면 flex-basis</li>
+                          <li>none, auto, initial</li>
+                          <li class="red">값 1,2개의 단위 없는 숫자값 쓸 때, flex-basis값이 auto가 아닌 0이 됨<br>
+                                          flex:1과 flex-grow:1은 grow는 같지만 flex-basis는 0과 auto로 다름</li>
+                        </ul>
+                      </li>
+                      <li>값 2개일 때 : 첫번째값 grow여야</li>
+                      <li>initial : 0 1 auto (grid 작동x. 남은공간 채우지x)</li>
+                      <li>auto : 1 1 auto</li>
+                      <li>none : 0 0 auto (늘어나지도 줄어들지도x)</li>
+                    </ul>              
                   </li>
-                  <li>값 2개일 때 : 첫번째값 grow여야</li>
-                  <li>initial : 0 1 auto (grid 작동x. 남은공간 채우지x)</li>
-                  <li>auto : 1 1 auto</li>
-                  <li>none : 0 0 auto (늘어나지도 줄어들지도x)</li>
-                </ul>              
+                </ul>
               </li>
               <li>align-self : 한 아이템에만 적용. align-items와 사용하는 키워드 같</li>
             </ul>
