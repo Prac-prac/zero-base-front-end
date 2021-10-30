@@ -1,577 +1,600 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="common.css" />
-    <link rel="stylesheet" href="css.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <ul>
-      <li>스타일은 뒤쪽에 작성되는 것이 우선시 됨</li>
-      <li>css: 내부작성 style, 외부연결 link</li>
-      <li>script : 내부작성, 외부연결 모두 script</li>
-      <li>숫자값 유형 1.Integer:음수되는 정수 2.Number:소수점 됨</li>
-    </ul>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="common.css" />
+  <link rel="stylesheet" href="css.css" />
+  <title>Document</title>
+</head>
+<body>
+<ul>
+  <li>스타일은 뒤쪽에 작성되는 것이 우선시 됨</li>
+  <li>css: 내부작성 style, 외부연결 link</li>
+  <li>script : 내부작성, 외부연결 모두 script</li>
+  <li>숫자값 유형 1.Integer:음수되는 정수 2.Number:소수점 됨</li>
+</ul>
 
-    <h2>속성선택자</h2>
-    <pre>
-        a[target]{
-        color: pink;
-        }
-    </pre>
-    <pre>
-        <!-- ^ : 로 "시작"하는-->
-        <!-- $ : 로 "끝"나는-->
-        <!-- * : "포함"하고 있는-->
-        a[href^="http"]{
+<h2>속성선택자</h2>
+<pre>
+    a[target]{
+    color: pink;
+    }
+</pre>
+<pre>
+    <!-- ^ : 로 "시작"하는-->
+    <!-- $ : 로 "끝"나는-->
+    <!-- * : "포함"하고 있는-->
+    a[href^="http"]{
 
-        }
-    </pre>
-    <pre>
-        input[type="submit"]{
-            background-color:green;
-        }
-    </pre>
-    <ul>
-      <h2>가상 클래스 선택자</h2>
-      <li>
-        first(last)-child, nth-child(수, or 함수(ex. 2n, 2n-1, odd, even))
-      </li>
-      <p>
-        .movie:first-child{
-        <span style="color: red">.movie의 첫 번째(X)</span><br />
-        형제들 중 첫 번째인데 그게 .movie여야함.(O) }
-      </p>
-      <li>first(last)-of-type: first-child 보완, nth-of-type()</li>
-      <p>
-        <span style="color: red"
-          >타입 중 첫번째라 타입 여러 개라면 여러 개 모두 선택됨</span
-        >
-      </p>
-      <li>ㄱ:not(ㄴ) ㄱ중에 ㄴ은 아닌{</li>
-      <li>a:link{, a:visited{</li>
-      <li>:link - :visited - :hover - :active(떼기전까지)순으로 배치해야</li>
-      <input type="text" value=":hover" />
-      <input type="text" value=":active" />
-      <input type="text" value=":focus" />
-      <input type="button" value=":hover" />
-      <input type="button" value=":active" />
-      <input type="button" id="focus" value=":focus" />
-      <li>
-        :enabled :disabled (type=text나 password나 email에서),
-        :checked(type=radio, checkbox)
-      </li>
-    </ul>
-    <ul>
-      <h2>가상 요소 선택자</h2>
-      <li>
-        ::before, ::after, ::first-letter, ::first-line,
-        ::selection(드래그한선택영역)
-      </li>
-    </ul>
-    <ul>
-      <h2>선택자 결합</h2>
-      <li>일반 형제 선택자 결합 ㄱ~ㄴ(ㄴ이 ㄱ의 뒤에 있기만 하면)</li>
-      <li>인접 형제 선택자 결합 ㄱ+ㄴ(ㄴ이 바로 뒤에 있어야)</li>
-      <li>그룹화 ,로 한 번에 css</li>
-      <li>*도 다른 선택자와 결합해 사용 가능</li>
-    </ul>
-    <ul>
-      <h2>상속 제어</h2>
-      <li>
-        자식에서 all:initial; (상속 끊)
-        <ul>
-          <li>내려오던 css 스타일 초기화</li>
-        </ul>
-      </li>
-      <li>
-        부모에서 all:inherit;(상속 받아라)
-        <ul>
-          <li>
-            ex)
-            <pre>.parent *{all:inherit;}</pre>
-          </li>
-        </ul>
-      </li>
-      <li>all:unset; 부모에게 상속 받은 값만 받, 나머지 설정은 초기화</li>
-    </ul>
-  </body>
-  <h2>선택자 우선순위</h2>
-  <p>!important>inline>id>>>....>*>inherit<br>
-     1. 선언된곳 2.명시도(적용범위 좁을 수록) 3.코드위치
+    }
+</pre>
+<pre>
+    input[type="submit"]{
+        background-color:green;
+    }
+</pre>
+<ul>
+  <h2>가상 클래스 선택자</h2>
+  <li>
+    first(last)-child, nth-child(수, or 함수(ex. 2n, 2n-1, odd, even))
+  </li>
+  <p>
+    .movie:first-child{
+    <span style="color: red">.movie의 첫 번째(X)</span><br />
+    형제들 중 첫 번째인데 그게 .movie여야함.(O) }
   </p>
-  <pre>div{color:red !important;}</pre>
-  <ul><h2>FONT</h2>
-    <li>font마다 line-height(약간의 여백 포함) 다름</li>
-    <li>font 단축속성 size, family 필수
-        <pre>font: 20px 'Times New Roman', Times, serif;</pre>
-        사이에 , 붙이지 않음<br>
-        font: font-style font-weight "font-size"/line-height "font-family"; 순으로<br>
-        작성하지 않은 요소는 initial로
-        <pre>font: italic 100 20px/1.7 'Times New ~</pre>
-        <span class="red">주의 아래와 같이 하면 설정안되고 font-style 초기값.<br>적용하려면 font-style을 밑에 설정해야</span>
-        <pre>.text{font-style: italic; font: 100 20px~;"</pre>
-    </li>
-    <li>letter-spacing, word-spacing</li>
-    <li>text-align 글자 정렬 : 인라인요소 적용 안됨. 그럴경우 감싸고 있는 위 div에 줘야</li>
-    <li>text-indent 들여쓰기 : 마찬가지로 인라인 적용x. inherit yes</li>
-    <li>text-decoration 순서 상관x</li>
-    <li>word-break: 텍스트 오버플로할 때 줄바꿈할건지
+  <li>first(last)-of-type: first-child 보완, nth-of-type()</li>
+  <p>
+    <span style="color: red"
+      >타입 중 첫번째라 타입 여러 개라면 여러 개 모두 선택됨</span
+    >
+  </p>
+  <li>ㄱ:not(ㄴ) ㄱ중에 ㄴ은 아닌{</li>
+  <li>a:link{, a:visited{</li>
+  <li>:link - :visited - :hover - :active(떼기전까지)순으로 배치해야</li>
+  <input type="text" value=":hover" />
+  <input type="text" value=":active" />
+  <input type="text" value=":focus" />
+  <input type="button" value=":hover" />
+  <input type="button" value=":active" />
+  <input type="button" id="focus" value=":focus" />
+  <li>
+    :enabled :disabled (type=text나 password나 email에서),
+    :checked(type=radio, checkbox)
+  </li>
+</ul>
+<ul>
+  <h2>가상 요소 선택자</h2>
+  <li>
+    ::before, ::after, ::first-letter, ::first-line,
+    ::selection(드래그한선택영역)
+  </li>
+</ul>
+<ul>
+  <h2>선택자 결합</h2>
+  <li>일반 형제 선택자 결합 ㄱ~ㄴ(ㄴ이 ㄱ의 뒤에 있기만 하면)</li>
+  <li>인접 형제 선택자 결합 ㄱ+ㄴ(ㄴ이 바로 뒤에 있어야)</li>
+  <li>그룹화 ,로 한 번에 css</li>
+  <li>*도 다른 선택자와 결합해 사용 가능</li>
+</ul>
+<ul>
+  <h2>상속 제어</h2>
+  <li>
+    자식에서 all:initial; (상속 끊)
+    <ul>
+      <li>내려오던 css 스타일 초기화</li>
+    </ul>
+  </li>
+  <li>
+    부모에서 all:inherit;(상속 받아라)
+    <ul>
+      <li>
+        ex)
+        <pre>.parent *{all:inherit;}</pre>
+      </li>
+    </ul>
+  </li>
+  <li>all:unset; 부모에게 상속 받은 값만 받, 나머지 설정은 초기화</li>
+</ul>
+</body>
+<h2>선택자 우선순위</h2>
+<p>!important>inline>id>>>....>*>inherit<br>
+  1. 선언된곳 2.명시도(적용범위 좁을 수록) 3.코드위치
+</p>
+<pre>div{color:red !important;}</pre>
+<ul><h2>FONT</h2>
+<li>font마다 line-height(약간의 여백 포함) 다름</li>
+<li>font 단축속성 size, family 필수
+    <pre>font: 20px 'Times New Roman', Times, serif;</pre>
+    사이에 , 붙이지 않음<br>
+    font: font-style font-weight "font-size"/line-height "font-family"; 순으로<br>
+    작성하지 않은 요소는 initial로
+    <pre>font: italic 100 20px/1.7 'Times New ~</pre>
+    <span class="red">주의 아래와 같이 하면 설정안되고 font-style 초기값.<br>적용하려면 font-style을 밑에 설정해야</span>
+    <pre>.text{font-style: italic; font: 100 20px~;"</pre>
+</li>
+<li>letter-spacing, word-spacing</li>
+<li>text-align 글자 정렬 : 인라인요소 적용 안됨. 그럴경우 감싸고 있는 위 div에 줘야</li>
+<li>text-indent 들여쓰기 : 마찬가지로 인라인 적용x. inherit yes</li>
+<li>text-decoration 순서 상관x</li>
+<li>word-break: 텍스트 오버플로할 때 줄바꿈할건지
+    <ul>
+        <li>break-all; :영어(한중일제외) 줄바꿈</li>
+        <li>keep-all; :한중일. 스페이스 할 때만 끊고 오버플로</li>
+    </ul>
+</li>
+<li>text-transform 한국어에는 적용x. 대소문자 조절</li>
+</ul>
+<ul><h2>길이</h2>
+    <li>절대길이 : px. px로 길이 고정해놓으면 브라우저에서 글자크기 설정 불가능. 그래서 상대길이가 바람직.</li>
+    <li>상대길이
         <ul>
-            <li>break-all; :영어(한중일제외) 줄바꿈</li>
-            <li>keep-all; :한중일. 스페이스 할 때만 끊고 오버플로</li>
+            <li>em(%) : 부모의 font-size기준</li>
+            <li>rem : root(html body=브라우저설정)의 font-size</li>
+        </ul>
+        <ul>반응형 디자인할때 사용.<br>
+            뷰포트 가로세로길이 100vw, 100vh로 잡
+            <li>vw,vh</li>
         </ul>
     </li>
-    <li>text-transform 한국어에는 적용x. 대소문자 조절</li>
-    </ul>
-    <ul><h2>길이</h2>
-        <li>절대길이 : px. px로 길이 고정해놓으면 브라우저에서 글자크기 설정 불가능. 그래서 상대길이가 바람직.</li>
-        <li>상대길이
-            <ul>
-                <li>em(%) : 부모의 font-size기준</li>
-                <li>rem : root(html body=브라우저설정)의 font-size</li>
-            </ul>
-            <ul>반응형 디자인할때 사용.<br>
-                뷰포트 가로세로길이 100vw, 100vh로 잡
-                <li>vw,vh</li>
-            </ul>
+    <li>calc()
+      <ul>
+        <li>단위 다른 길이 계산 ex)width:calc(100% - lem);</li>
+        <li>연산자 좌우에 공백 있어야</li>
+      </ul>
+    </li>
+    <li>min(100%,500px), max(,)</li>
+</ul>
+<ul><h2>박스모델</h2>
+  <ul><h3>margin</h3>
+    <li>세로/가로, 위/가로/아래, 위/오/아/왼</li>
+    <li>인라인요소 margin <span class="red">좌우</span>는 설정 가능</li>
+    <li>길이 % : <span class="red">부모 마진의 %(X) 부모 width의 %(O)</span></li>
+    <li>마진 상쇄
+      <ul>
+        <li> 요건: 블록요소, margin-top/bottom</li>
+        <li> 더 큰 크기의 마진으로 결합됨</li>
+      </ul>
+      <ol>
+        <li>인접 형제
+          <ul><li>두 형제 요소의 위와 아래 마진이 만나 상쇄. 세로일 때만. 가로는 top-left/right라 상쇄없이</li></ul>
         </li>
-        <li>calc()
+        <li>부모-자식 요소 간
           <ul>
-            <li>단위 다른 길이 계산 ex)width:calc(100% - lem);</li>
-            <li>연산자 좌우에 공백 있어야</li>
+            <li>부모 블록에 border, padding, inline content가 없어서(막을 경계가 없어서) 자식의 margin-top 만날 때</li>
+            <li>부모 블록에 border, padding, inline content가 없고 height가 부모자식 분리못하고 자식의 margin-bottom 만날 때</li>
           </ul>
         </li>
-        <li>min(100%,500px), max(,)</li>
-    </ul>
+        <li>빈 block
+          <ul>
+            <li>border, padding, content, height 없어 자신의 margin-top과 bottom이 자체적으로 만날때 ex)내용없는 div</li>
+          </ul>
+        </li>
+      </ol>
+    </li>
+  </ul>
+  <ul><h3>padding : 마진과 달리 음수값 사용x</h3>
+    <li>% : 부모 width의 % <span class="red">주의! padding-top도 width의 %. height의 % 아님</span></li>
+  </ul>
+  <ul><h3>border</h3>
+    <li>border-style 필수 아닌 필수. 미설정 시 none이라 설정 필요</li>
+    <li>순서 상관x</li>
+    <li>cf)outline 박스모델에 속해 있지x. 레이아웃x. 영역 차지x. focus할 때 같이 단순 강조 위한 요소</li>
+  </ul>
+  <ul><h3>border-radius</h3>
+    <li>모서리 원 반지름값</li>
+    <li>%로 하면 각각 width, height의 %로 모서리 원 반지름값</li>
+    <li>두 값이면 왼쪽 대각선, 오른쪽 대각선</li>
+  </ul>
+  <ul><h3>box-sizing: 기본값 content-box(content만), border-box(content,border,padding 포함)</h3>
+    <li>*{box-sizing: border-box;}처럼 전체로 걸어 많이 사용</li>
+  </ul>
+</ul> 
+
+<ul><h2>display:none; vs visibility:hidden;</h2>  
+  <li>visibility:hidden은 자리차지</li>
+</ul>
+
+
+<ul><h2>레이아웃</h2>
+  <ul><h3>display</h3>
+    <li>inline: 좌우여백 추가할 수 있지만, 위아래는 안됨. 영역의 크기는 내부 콘텐츠 크기</li>
+    <li>block: width 지정 안하면 가로 전체 차지</li>
+    <li>inline-block: 가로배치되는 block. 영역 크기 width, height, 여백 지정 가능 ex)input</li>
+  </ul>
+  <ul><h3>float</h3>
+    <li>:none; left; right; 텍스트, inline요소가 주변에 흐르도록</li>
+  </ul>  
+  <ul><h3>position</h3>
+    <li>position:static(기본값)
+      <ul>
+        <li>normal flow 그냥 디폴트</li>
+        <li><span class="red">position:<strong>static;</strong> 일 때는 top, bottom, left, right 적용 안됨. 무시됨</span></li>
+        <li>position:static; 제외하고는 모두 top,bottom,left,right 사용</li>
+      </ul>
+    </li>
+    <li>position:relative
+      <ul>
+        <li>normal flow 따름</li>
+        <li>자기자신 기준으로 top, right, bottom, left 설정</li>
+        <li>다른 요소에 영향 주지x</li>
+        <li>static일 때 기준으로. 반대되는 값 top/bottom, left/right 동시 설정 시 bottom, right도 무시됨</li>
+      </ul>
+    </li> 
+    <li>position:absolute
+      <ul>
+        <li>normal flow 벗어나 붕떠 top,bottom,left,right 설정 시 조상 요소 기준</li>
+        <li>top,bottom,left,right 설정 없으면 그냥 붕뜨기만</li>
+        <li>조상 요소는 position:static 아닌 것(대게는 relative). 없으면 body 기준</li>
+      </ul>
+    </li>   
+    <li>position:fixed
+      <ul>
+        <li>normal flow 벗어나 붕떠 viewport 기준</li>
+        <li>ex)광고배너</li>
+      </ul>
+    </li>  
+    <li>position:sticky
+      <ul>
+        <li>특정 위치 지나갔을 때 스크롤 내리면서 설정한 특정 위치에 fixed처럼</li>
+        <li>스크롤 되는 조상의 바로 자식(body의 자식)에. 자식의 자식에 설정하면 안먹음</li>
+        <li>ex)광고배너</li>
+      </ul>
+    </li> 
+    <li>static 아닌 것이 static보다 위에 뜸, 코드 순서 뒤에 있는 게 위에 뜸</li> 
+  </ul>
+  <ul><h3>overflow</h3>
+    <li>:visible, hidden, scroll, auto</li>
+  </ul>
+  <ul><h3>z-index</h3>
+    <li>양수:위에, 음수:뒤에</li>
+    <li>static 아닌 것이 static보다 위에 뜸, 코드 순서 뒤에 있는 게 위에
+  </ul>
+</ul>
+<ul><h2>색상과 배경</h2>
+  <li>색상은 키워드 or #16진수(0쪽일수록 어둡, F쪽일수록 밝) or rgb(), rgba()-a는 투명도</li>
+  <li>background-color 기본값 transparent</li>
+  <li>rgba vs opacity? rgba와 다르게 opacity(기본값:1)는 (자식 요소가 상속하진 않지만) 모든 내부 요소도 투명하게</li>
+  <li>background-image: url("");
     <ul>
-      <h2>margin</h2>
-      <li>인라인요소 margin <span class="red">좌우</span>는 설정 가능</li>
-      <li>% : 부모 width의 %</li>
-      <li>마진 상쇄
+      <li>background-color보다 위에</li>
+      <li>background-repeat: 기본값 repeat, repeat-x, y, no-repeat</li>
+      <li>background-position : 왼쪽 상단 꼭짓점 기준 x축 y축 or 키워드(순서상관x. ex.top-y축 center-x축) 키워드 하나만 적으면 나머지는 자동 center</li>
+      <li>background-origin(배경 시작점 0,0이 어디서부터 시작하는지) : border-box, padding-box(기본값), content-box</li>
+      <li>background-size 
         <ul>
-          <li> 요건: 블록요소, margin-top/bottom</li>
-          <li> 더 큰 크기의 마진으로 결합됨</li>
-        </ul>
-        <ol>
-          <li>인접 형제
-            <ul><li>두 형제 요소의 위와 아래 마진이 만나 상쇄. 세로일 때만. 가로는 top-left/right라 상쇄없이</li></ul>
-          </li>
-          <li>부모-자식 요소 간
-            <ul>
-              <li>부모 블록에 border, padding, inline content가 없어서(막을 경계가 없어서) 자식의 margin-top 만날 때</li>
-              <li>부모 블록에 border, padding, inline content가 없고 height가 부모자식 분리못하고 자식의 margin-bottom 만날 때</li>
-            </ul>
-          </li>
-          <li>빈 block
-            <ul>
-              <li>border, padding, content, height 없어 자신의 margin-top과 bottom이 자체적으로 만날때 ex)내용없는 div</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ul>
-    <ul><h2>padding : 마진과 달리 음수값 사용x</h2>
-      <li>% : 부모 width의 % <span class="red">주의! padding-top도 width의 %. height의 % 아님</span></li>
-    </ul>
-    <ul><h2>border</h2>
-      <li>border-style 필수 아닌 필수. 미설정 시 none이라 설정 필요</li>
-      <li>순서 상관x</li>
-      <li>cf)outline 박스모델에 속해 있지x. 레이아웃x. 영역 차지x. focus할 때 같이 단순 강조 위한 요소</li>
-    </ul>
-    <ul><h2>border-radius</h2>
-      <li>모서리 원 반지름값</li>
-      <li>%로 하면 각각 width, height의 %로 모서리 원 반지름값</li>
-      <li>두 값이면 왼쪽 대각선, 오른쪽 대각선</li>
-      <a href="#" id="h">hhhh</a>
-    </ul>
-    <ul><h2>box-sizing:border-box;</h2>
-      <li>width,height가 content 영역의 가로세로(X) 아닌 요소 자체(border,padding 포함)의 가로세로(O)가 됨</li>
-      <li>*{box-~;}로 전체로 걸어 많이 사용</li>
-    </ul>
-    <ul><h2>display:none; vs visibility:hidden;</h2>  
-      <li>visibility:hidden은 자리차지</li>
-    </ul> 
-    <ul><h2>레이아웃</h2>
-      <li>float:none; left; right; </li>
-      <li>position:static
-        <ul>
-          <li>normal flow 그냥 디폴트</li>
-          <li><span class="red">position:<strong>static;</strong> 일 때는 top, bottom, left, right 적용 안됨. 무시됨</span></li>
+          <li>length (length): 값 하나이면 가로에 맞춰서</li>
+          <li>% 가로에 맞춰서</li>
+          <li>아래 둘 다 이미지 비율 유지하며 요소의 크기에 맞춰짐</li>
+          <ul>
+            <li>contain(다 보이는 걸 목표로. 빈공간o)</li>
+            <li>cover(맞출 수 있는데까지만 보여줌. 빈공간x)</li>
+          </ul>
         </ul>
       </li>
-      <li>position:relative
-        <ul>
-          <li> static일 때 기준으로. top,bottom 동시 설정 시 bottom 무시, right도 무시됨</li>
-        </ul>
-      </li> 
-      <li>position:absolute
-        <ul>
-          <li> normal flow 벗어나 붕떠 position:static; 아닌 조상 요소 찾아 기준</li>
-          <li>position:static; 아닌 조상 요소 없으면 body 기준</li>
-        </ul>
-      </li>   
-      <li>position:fixed
-        <ul>
-          <li>normal flow 벗어나 붕떠 viewport 기준</li>
-          <li>ex)광고배너</li>
-        </ul>
-      </li>  
-      <li>position:sticky
-        <ul>
-          <li>스크롤 되는 조상의 바로 자식??? body의 자식</li>
-          <li>ex)광고배너</li>
-        </ul>
-      </li> 
-      <li>static 아닌 것이 static보다 위에 뜸, 코드 순서 뒤에 있는 게 위에 뜸</li> 
+      <li>[shorthand]background : bg-position 뒤에 /bg-size, 마지막은 bg-color</li>
     </ul>
-    <ul><h2>overflow</h2>
-      <li>:visible, hidden, scroll, auto</li>
-    </ul>
-    <ul><h2>z-index</h2>
-      <li>양수:위에, 음수:뒤에</li>
-      <li>static 아닌 것이 static보다 위에 뜸, 코드 순서 뒤에 있는 게 위에
-    </ul>
-    <ul><h2>color</h2>
-      <li>rgba와 다르게 opacity(기본값:1)는 (자식 요소가 상속하진 않지만) 자식요소도 투명하게</li>
-      <li>background-image가 background-color보다 위에
-        <ul>
-          <li>background-repeat: repeat-x, y, no-repeat</li>
-          <li>background-position : x축 y축; 키워드로 하면 순서상관x. 키워드 하나만 적으면 나머지는 자동 center</li>
-          <li>background-origin(배경 시작점) : border-box, padding-box(기본값), content-box</li>
-          <li>background-size 
-            <ul>
-              <li>:length (length)</li>
-              <li>: % 가로에 맞춰서</li>
-              <li>아래 둘 다 이미지 비율 유지하며 요소의 크기에 맞춰짐</li>
-              <li>: contain(다 보이는 걸 목표로. 빈공간o)</li>
-              <li>: cover(맞출 수 있는데까지만 보여줌. 빈공간x)</li>
-            </ul>
-          </li>
-          <li>[shorthand]background : bg-position 뒤에 /bg-size, 마지막은 bg-color</li>
-        </ul>
-      </li>
-    </ul>
-    <ul><h2>transform : 값 오른쪽부터 왼쪽으로 역순으로 적용. y축 아래로 향해 있음. 크기 바꾸거나 기울이거나 이동~. <br>
-      레이아웃 실질적으로 바뀌지x. img태그 뿐만 아니라 p태그 등도 가능</h2>
-      <ul>값으로 함수
-        <li>크기 scale(Number,(Number))+scaleX, scaleY: 0.5하면 width, height 반으로 줄고 여백 생기게 가운데로</li>
-        <li>회전 rotate(angle)</li>
-        <li>이동 translate(length:px,em,rem../percentage, ()) + translateX, translateY: 인수 하나만 있으면 x,y 적용이 아니라 x만 적용 cf.scale은 x,y 둘 다</li>
-        <li>기울이기 skew(angle, (angle)) + skewX, skewY: 인수 하나면 x만</li>
-      </ul>
-      <ul>독자적 프로퍼티로
-        <li>기준점 설정 transform-origin -> transition이나 애니메이션에 유용하게 사용될 수</li>
-      </ul>
-    </ul>
-    <ul><h2>transition : A->B로 바뀌는 "과정", 1번, 사용자의 action으로 실행됨</h2>
-      <li>transition-property : 바꿀 css 대상 요소. ,해서 원하는 대상 이어서 작성<br>
-            ex)transition-property: all, background-color</li>
-      <li>transition-duration : s, ms ( 1s = 1000ms)</li>
-      <li>transition-timing-function: 기본값 ease</li>
-      <li>transition-delay</li>
-      <li>[shorthand]transition: property duration timingfunction delay. 대상 맨 앞에, 시간 duration delay 순으로</li>
-    </ul>
-    <ul><h2>애니메이션 : 단순 A->B 정도인 transition과 다르게 다수의 스타일 전환 가능, 여러번, 사용자의 action없이 자동으로</h2>
-      <li>transition-property 대신 @keyframes만들어놓고 키프레임즈이름을 animation-name에 갖다 씀.</li>
-      <li>간단하게 @keyframes from{}to{}나 %를 사용해 구현</li>
-      <pre>
-        .클래스{
-          애니메이션 적용시킬 클래스에다 
-          animation: 키프레임즈이름 시간 ~;
-        }
+  </li>
+</ul>
+<ul><h2>transform : 값 오른쪽부터 왼쪽으로 역순으로 적용. y축 아래로 향해 있음. 크기 바꾸거나 기울이거나 이동~. <br>
+  레이아웃 실질적으로 바뀌지x. img태그 뿐만 아니라 p태그 등도 가능</h2>
+  <ul>값으로 함수
+    <li>크기 scale(Number,(Number))+scaleX, scaleY: 0.5하면 width, height 반으로 줄고 여백 생기게 가운데로</li>
+    <li>회전 rotate(angle)</li>
+    <li>이동 translate(length:px,em,rem../percentage, ()) + translateX, translateY: 인수 하나만 있으면 x,y 적용이 아니라 x만 적용 cf.scale은 x,y 둘 다</li>
+    <li>기울이기 skew(angle, (angle)) + skewX, skewY: 인수 하나면 x만</li>
+  </ul>
+  <ul>독자적 프로퍼티로
+    <li>기준점 설정 transform-origin -> transition이나 애니메이션에 유용하게 사용될 수</li>
+  </ul>
+</ul>
+<ul><h2>transition : A->B로 바뀌는 "과정", 1번, 사용자의 action으로 실행됨</h2>
+  <li>transition-property : 바꿀 css 대상 요소. ,해서 원하는 대상 이어서 작성<br>
+        ex)transition-property: all, background-color</li>
+  <li>transition-duration : s, ms ( 1s = 1000ms)</li>
+  <li>transition-timing-function: 기본값 ease</li>
+  <li>transition-delay</li>
+  <li>[shorthand]transition: property duration timingfunction delay. 대상 맨 앞에, 시간 duration delay 순으로</li>
+</ul>
+<ul><h2>애니메이션 : 단순 A->B 정도인 transition과 다르게 다수의 스타일 전환 가능, 여러번, 사용자의 action없이 자동으로</h2>
+  <li>transition-property 대신 @keyframes만들어놓고 키프레임즈이름을 animation-name에 갖다 씀.</li>
+  <li>간단하게 @keyframes from{}to{}나 %를 사용해 구현</li>
+  <pre>
+    .클래스{
+      애니메이션 적용시킬 클래스에다 
+      animation: 키프레임즈이름 시간 ~;
+    }
 
-        @keyframes 키프레임즈이름{
-          from{
+    @keyframes 키프레임즈이름{
+      from{
 
-          }
-          to{
+      }
+      to{
 
-          }
-        }
+      }
+    }
 
-        @keyframes 키프레임즈이름{
-          0%{}
-          30%{}
-          100%{}
-        }
-      </pre>
-      <li>animation-delay : 음수값 가능</li>
-      <li>animation-iteration-count: Number타입(소수점 가능), infinite</li>
-      <li>animation-direction: normal, reverse, alternate, alternate-reverse. 연속 , 찍어서</li>
-      <li>animation-play-state : paused, 기본값 running</li>
-      <li>animation-fill-mode : 애니메이션 시작, 끝 어떤 값 적용될지
-        <ul>
-          <li>기본값 none</li>
-          <li>forwards 끝을 제어(끝나고 기존스타일로 돌아가지 않고 애니메이션 끝난 그대로)</li>
-          <li>backwards 시작을 제어(시작을 기존스타일이 아닌 @keyframes로)</li>
-          <li>both 시작과 끝 모두 제어</li>
-        </ul>
-      </li>  
-      <li>shorthand에서 duration과 name은 필수</li>
+    @keyframes 키프레임즈이름{
+      0%{}
+      30%{}
+      100%{}
+    }
+  </pre>
+  <li>animation-delay : 음수값 가능</li>
+  <li>animation-iteration-count: Number타입(소수점 가능), infinite</li>
+  <li>animation-direction: normal, reverse, alternate, alternate-reverse. 연속 , 찍어서</li>
+  <li>animation-play-state : paused, 기본값 running</li>
+  <li>animation-fill-mode : 애니메이션 시작, 끝 어떤 값 적용될지
+    <ul>
+      <li>기본값 none</li>
+      <li>forwards 끝을 제어(끝나고 기존스타일로 돌아가지 않고 애니메이션 끝난 그대로)</li>
+      <li>backwards 시작을 제어(시작을 기존스타일이 아닌 @keyframes로)</li>
+      <li>both 시작과 끝 모두 제어</li>
     </ul>
-    <ul><h2>display</h2>
-      <li>요소 외부: block, inline, inline-block</li>
-      <li>요소 내부: flex, grid</li>
-      <pre>ex) display: inline-flex;</pre>
-    </ul>
-    <ul><h2>flexbox : <span class="red">1차원</span> 직선 정렬</h2>
-      <li><strong><span class="red">flex-wrap과 별개로 여러줄X. 두 줄 넘어가면 grid 사용</span></strong></li>
-      <li>cf)table : 2차원 정렬</li>
-      <li>container와 items 부모자식관계 성립되어야</li>
-      <li>main axis(주축), cross axis(교차축. 주축의 수직축)</li>
-      <li>컨테이너에 설정할 것, 아이템에 설정할 것 다름
-        <ul>
-          <li>컨테이너 속성
-            <ul>
-              <li>flex-direction : 주축의 위치(수평,수직), 주축의 방향(정,역)
-                <ul>
-                  <li>row(기본값)</li>
-                  <li>row-reverse</li>
-                  <li>column</li>
-                  <li>column-reverse</li>
-                </ul>
-              </li>
-              <li>flex-wrap : 강제한줄배치? 여러줄배치?
-                <ul>
-                  <li>nowrap(기본값) : 강제한줄배치. 아이템들 찌그러짐</li>
-                  <li>wrap : 공간 없으면 다음줄로. 자신의 크기 잃지 않음.</li>
-                  <li>wrap-reverse</li>
-                </ul>
-              </li>
-              <li>[shorthand]flex-flow : flex-direction flex-wrap 단축속성</li>
-              <li>justify-content : 주축 기준으로 아이템 어떻게 정렬할지
-                <ul>
-                  <li>flex-start(기본값)</li>
-                  <li>flex-end : 주축의 끝<span class="red">("위치"만. 역순x)</span>에 정렬(주축 방향:정방향, 오른끝에 붙어서 12345순)<br>
-                      flex-direction의 reverse와는 다름. reverse는 "아이템들 역순-><span class="red">아이템 정렬(순서)</span>"(주축 방향:역방향, 왼쪽 시작에 54321순). <br>
-                      <span class="red">flex-end는 주축방향 안 바뀜. flex-direction: reverse를 해야 바뀌는 거</span></li>
-                  <pre>
-                    flex-direction: row-reverse; 주축의 방향 오른쪽에서 왼쪽
-                    justify-content: flex-end; 왼쪽이니 왼쪽 끝에 붙어서 54321순
-                  </pre>
-                  <li>center: 주축 기준 가운데</li>
-                  <li>space-between : 시작점 끝점 끝에 딱 붙고 아이템 사이 간격 동일<span class="blue">->메뉴 만들때 유용</span></li>    
-                  <li>space-around : 시작점 끝점 띄어서 아이템 사이 간격 동일</li>
-                </ul>
-              </li>
-              <figure>
-              <img src="img/Screenshot 2021-09-08 at 16.04.31.jpg" alt="justify-content와 align-items의 이해">
-              <figcaption class="red">
-                ▲ justify-content(한줄 내) : 연두색 박스 안에서 items 어떻게 정렬할 건지<br>
-                ▲ align-items(한줄 자체) : 컨테이너 안에 연두색 박스 어디다 둘 건지
-              </figcaption>
-              </figure>
-              <li>교차축에 대한 정렬
-                <ol>
-                  <li>align-items : 1줄일때 -> 여러 줄일 때 적용하면 줄마다 나눠서 한줄씩 각각 적용됨
-                    <ul>
-                      <li>stretch(기본값) : item height 지정안되면 컨테이너 내 높이 다 차지. block 가로처럼</li>
-                      <li>flex-start : 교차축 시작에</li>
-                      <li>flex-end</li>
-                      <li>center</li>
-                    </ul>
-                  </li>
-                  <li>align-content : 기본1줄이지만 flex-wrap을 설정하여 여러줄일때
-                    <ul>
-                      <li>justify-content와 똑같은 값 사용. 여러 줄이라 align-items와 다르게 space-between, space-around 사용</li> 
-                      <li>flex-start, flex-end, center, space-between, space-around</li>
-                    </ul>
-                  </li>
-                </ol>
-              </li>
-              
-            </ul>
-          </li>
-          <li>아이템 속성
-            <ul>
-              <li>order : 아이템 순서. 기본값 0. 작을 수록 앞. 음수가능. 부모 컨테이너 flex나 grid 설정되어 있어야</li>
-              <li>
-                <ul>아이템 늘리거나 줄이는 비율 설정
-                  <li>flex-grow(늘어남) : 컨테이너 남게 두지 않고 공간 얼만큼씩 나눠가짐. 기본값 0(컨테이너 키운다고 늘어나지 않)</li>
-                  <li>flex-shrink(줄어듦) : 기본값 1(컨테이너 줄이면 줆어듦).</li>
-                  <li>flex-basis : flex-basis 나머지값을 grow,shink가 나눔. 기본값 요소의 크기만큼. 0으로 하면 grow,shink 그 자체로 사용o</li>
-                  <li>[shorthand]flex : 아이템을 컨테이너 공간에 맞추기 위해 크기 키우거나 줄이는 속성
-                    <ul>
-                      <li>값 1개일 때
-                        <ul>
-                          <li>타입이 &lt;Number&gt;이면 flex-grow  ex)flex:1; 많이 쓰임</li>
-                          <li>타입이 &lt;length&gt;, &lt;percentage&gt;이면 flex-basis</li>
-                          <li>none, auto, initial</li>
-                          <li class="red">값 1,2개의 단위 없는 숫자값 쓸 때, flex-basis값이 auto가 아닌 0이 됨<br>
-                                          flex:1과 flex-grow:1은 grow는 같지만 flex-basis는 0과 auto로 다름</li>
-                        </ul>
-                      </li>
-                      <li>값 2개일 때 : 첫번째값 grow여야</li>
-                      <li>initial : 0 1 auto (grid 작동x. 남은공간 채우지x)</li>
-                      <li>auto : 1 1 auto</li>
-                      <li>none : 0 0 auto (늘어나지도 줄어들지도x)</li>
-                    </ul>              
-                  </li>
-                </ul>
-              </li>
-              <li>align-self : 한 아이템에만 적용. align-items와 사용하는 키워드 같</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <ul><h2>display</h2>
-      <li>바깥쪽 앞뒤요소: block, inline, inline-block</li>
-      <li>안쪽 아이템들: flex, grid</li>
-      <li>ex)inline-flex:바깥쪽 관계는 inline 안쪽은 flex(컨테이너에 설정-아이템 아닌)</li>
-    </ul>
-    <ul><h2>grid</h2>
-      <li>구성 : columns, rows, gutters(각 행과 열 사이의 공백)</li>
+  </li>  
+  <li>shorthand에서 duration과 name은 필수</li>
+</ul>
+<ul><h2>display</h2>
+  <li>요소 외부: block, inline, inline-block</li>
+  <li>요소 내부: flex, grid</li>
+  <pre>ex) display: inline-flex;</pre>
+</ul>
+<ul><h2>flexbox : <span class="red">1차원</span> 직선 정렬</h2>
+  <li><strong><span class="red">flex-wrap과 별개로 여러줄X. 두 줄 넘어가면 grid 사용</span></strong></li>
+  <li>cf)table : 2차원 정렬</li>
+  <li>container와 items 부모자식관계 성립되어야</li>
+  <li>main axis(주축), cross axis(교차축. 주축의 수직축)</li>
+  <li>컨테이너에 설정할 것, 아이템에 설정할 것 다름
+    <ul>
       <li>컨테이너 속성
         <ul>
-          <li>grid-template-rows : repeat(4, 1fr);</li>
-          <li>grid-template-columns</li>
-          <li>grid-template-areas 
+          <li>flex-direction : 주축의 위치(수평,수직), 주축의 방향(정,역)
             <ul>
-              <li>: grid 이름표(grid-area) 붙여 땅따먹기</li>
-              <li>땅따먹기할 .class에 grid-area 부여 -> grid-template-areas로 땅따먹기</li>
-              <pre>
-                .container{
-                  display:grid;
-                  grid-template-columns : repeat(4,1fr);
-                  grid-template-rows : repeat(3,1fr);
-                  grid-template-areas:
-                   "hd hd hd hd"
-                   "ma ma . ."
-                   ". . . .";
-                }
-
-                .header{grid-area:hd;}
-                .main{grid-area:ma;}
-              </pre>
-            </ul>
-          </li>
-          <li>[shorthand]gap : row-gap column-gap</li>
-          <li>grid-auto-rows, grid-auto-columns(암묵적) : grid-template(명시적.아이템 없어도 자리 차지)에 명시하지 않은 추가된 행의 높이와 열의 너비</li>
-          <li>grid-auto-flow :
-            <ul>
-              <li>row</li>
-              <li>row dense(dense:빈 영역 채워짐)</li>
+              <li>row(기본값)</li>
+              <li>row-reverse</li>
               <li>column</li>
-              <li>column dense</li>
-            </ul>dense(빈 영역 채워짐)
-          </li>           
-          <li>[shorthand]grid:(auto-flow)row설정/(auto-flow)column설정
-            <ul>
-                <li>명시적-template, 암시적-auto</li>
-                <li>auto-flow 원하는 쪽에</li>
+              <li>column-reverse</li>
             </ul>
           </li>
-          <li>justify(주축)-content, align(교차축)-content : 전체 행, 전체 열</li>
-          <li>justify-items : 각각의 틀 안에서 각 아이템 어떻게 정렬할지. stretch(기본값); -> 다른값으로 바꾸면 별도 width설정 없으면 컨텐츠 길이만큼 줄어듦</li>
-          <li>justify-self : 하나의 아이템에 대한 정렬</li>
-          <pre>
-            html에서는
-            &lt;div class="container">
-            &lt;div class="item">1</div>
-            &lt;div class="item">2</div>
-              &lt;div class="item">3</div>
-              &lt;div class="item">4</div>
-              &lt;div class="item">5</div>
-              &lt;div class="item">6</div>
-            &lt;/div>
-
-            css에서는
-            .container{
-              border: 5px dashed orange;
-
-              width: 100%;
-              heigth: 500px;
-
-              display: grid;
-              grid-template-rows: repeat(3, 1fr);
-              grid-template-columns: repeat(3, 1fr);
-
-              **전체
-              justify-items: end; 로 하면 값 설정 안한 것들 갑자기 홀쭉해짐
-              이유는 기본값이 stretch(차지할 수 있는 자리만큼 힘껏 늘어남)
-              end로 하면 stretch 해제되고 content길이(or 개별설정한 width)만큼 줄어듦
-             
-            }
-
-            .item{
-              background-color: skyblue;
-              border: 3px solid blue;
-              font-size: 24px;
-            }
-
-            .item:nth-child(1){
-              width: 50px;
-              height: 50px;
-            }
-
-            .item:nth-child(2){
-              **개별
-              justify-self: end;
-            }
-            </html>
-          </pre>
+          <li>flex-wrap : 강제한줄배치? 여러줄배치?
+            <ul>
+              <li>nowrap(기본값) : 강제한줄배치. 아이템들 찌그러짐</li>
+              <li>wrap : 공간 없으면 다음줄로. 자신의 크기 잃지 않음.</li>
+              <li>wrap-reverse</li>
+            </ul>
+          </li>
+          <li>[shorthand]flex-flow : flex-direction flex-wrap 단축속성</li>
+          <li>justify-content : 주축 기준으로 아이템 어떻게 정렬할지
+            <ul>
+              <li>flex-start(기본값)</li>
+              <li>flex-end : 주축의 끝<span class="red">("위치"만. 역순x)</span>에 정렬(주축 방향:정방향, 오른끝에 붙어서 12345순)<br>
+                  flex-direction의 reverse와는 다름. reverse는 "아이템들 역순-><span class="red">아이템 정렬(순서)</span>"(주축 방향:역방향, 왼쪽 시작에 54321순). <br>
+                  <span class="red">flex-end는 주축방향 안 바뀜. flex-direction: reverse를 해야 바뀌는 거</span></li>
+              <pre>
+                flex-direction: row-reverse; 주축의 방향 오른쪽에서 왼쪽
+                justify-content: flex-end; 왼쪽이니 왼쪽 끝에 붙어서 54321순
+              </pre>
+              <li>center: 주축 기준 가운데</li>
+              <li>space-between : 시작점 끝점 끝에 딱 붙고 아이템 사이 간격 동일<span class="blue">->메뉴 만들때 유용</span></li>    
+              <li>space-around : 시작점 끝점 띄어서 아이템 사이 간격 동일</li>
+            </ul>
+          </li>
+          <figure>
+          <img src="img/Screenshot 2021-09-08 at 16.04.31.jpg" alt="justify-content와 align-items의 이해">
+          <figcaption class="red">
+            ▲ justify-content(한줄 내) : 연두색 박스 안에서 items 어떻게 정렬할 건지<br>
+            ▲ align-items(한줄 자체) : 컨테이너 안에 연두색 박스 어디다 둘 건지
+          </figcaption>
+          </figure>
+          <li>교차축에 대한 정렬
+            <ol>
+              <li>align-items : 1줄일때 -> 여러 줄일 때 적용하면 한줄씩 각각 적용됨. 한 줄씩 컨테이너로 봄
+                <ul>
+                  <li>stretch(기본값) : item height 지정안되어있으면 컨테이너 내의 높이 다 차지. block 가로처럼</li>
+                  <li>flex-start : 교차축 시작에</li>
+                  <li>flex-end</li>
+                  <li>center</li>
+                </ul>
+              </li>
+              <li>align-content : 기본1줄이지만 flex-wrap을 설정하여 여러줄일때
+                <ul>
+                  <li>justify-content와 똑같은 값 사용. 여러 줄이라 align-items와 다르게 space-between, space-around 사용</li> 
+                  <li>flex-start, flex-end, center, space-between, space-around</li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+          
         </ul>
       </li>
       <li>아이템 속성
         <ul>
-          <li>[shorthand]grid-row : grid-row-start/grid-row-end, grid-column<br>
-            ⇒[shorthand]grid-area =>선으로. span 쓰면 칸으로.
-            <ul>
-              <li>숫자가 행,열(X) grid 몇 번째 선(O). f12눌러확인가능</li>
-              <li>1부터 시작. 뒤에서부터는 -1부터 시작. 단 음수는 명시적(template)에서만.(∵추가로 생긴 선에서는 X)<br>
-                ex)여건에 따라서 1/3, 1/-2 같을 수</li>
-              <li>1/-1 : 전체 채움</li>
-              <li>1/<span class="red">span 2 -> span 사용하면 칸수로</span></li>
+          <li>order : 아이템 순서. 기본값 0. 작을 수록 앞. 음수가능. 부모 컨테이너 flex나 grid 설정되어 있어야</li>
+          <li>
+            <ul>아이템 늘리거나 줄이는 비율 설정
+              <li>flex-grow(늘어남) : 컨테이너 남게 두지 않고 공간 얼만큼씩 나눠가짐. 기본값 0(컨테이너 키운다고 늘어나지 않)</li>
+              <li>flex-shrink(줄어듦) : 기본값 1(컨테이너 줄이면 줆어듦).</li>
+              <li>flex-basis : flex-basis 나머지값을 grow,shink가 나눔. 기본값 요소의 크기만큼. 0으로 하면 grow,shink 그 자체로 사용o</li>
+              <li>[shorthand]flex : 아이템을 컨테이너 공간에 맞추기 위해 크기 키우거나 줄이는 속성
+                <ul>
+                  <li>값 1개일 때
+                    <ul>
+                      <li>타입이 &lt;Number&gt;이면 flex-grow  ex)flex:1; 많이 쓰임</li>
+                      <li>타입이 &lt;length&gt;, &lt;percentage&gt;이면 flex-basis</li>
+                      <li>none, auto, initial</li>
+                      <li class="red">값 1,2개의 단위 없는 숫자값 쓸 때, flex-basis값이 auto가 아닌 0이 됨<br>
+                                      flex:1과 flex-grow:1은 grow는 같지만 flex-basis는 0과 auto로 다름</li>
+                    </ul>
+                  </li>
+                  <li>값 2개일 때 : 첫번째값 grow여야</li>
+                  <li>initial : 0 1 auto (grid 작동x. 남은공간 채우지x)</li>
+                  <li>auto : 1 1 auto</li>
+                  <li>none : 0 0 auto (늘어나지도 줄어들지도x)</li>
+                </ul>              
+              </li>
             </ul>
           </li>
-          <li>[shorthand]grid-area
-            <ol>
-              <li>grid-template-areas의 땅따먹기 이름표 역할</li>
-              <li>[shorthand] : start가 먼저. grid-row-start/grid-column-start/grid-row-end/grid-column-end</li>
-            </ol>
-          </li>
-          <li>order : 개체들 순서. 작은 정수가 우선순위. 기본값 0.</li>
-          <li>z-index : 높은 정수가 앞으로.</li>
+          <li>align-self : 한 아이템에만 적용. align-items와 사용하는 키워드 같</li>
         </ul>
       </li>
     </ul>
-    <ul><h2>grid 단위</h2>
-      <li>px과 fr 함께 있으면 절대길이px 적용 후 나머지 비율 적용</li>
-      <li>내용에 따라
+  </li>
+</ul>
+<ul><h2>display</h2>
+  <li>바깥쪽 앞뒤요소: block, inline, inline-block</li>
+  <li>안쪽 아이템들: flex, grid</li>
+  <li>ex)inline-flex:바깥쪽 관계는 inline 안쪽은 flex(컨테이너에 설정-아이템 아닌)</li>
+</ul>
+<ul><h2>grid</h2>
+  <li>구성 : columns, rows, gutters(각 행과 열 사이의 공백)</li>
+  <li>컨테이너 속성
+    <ul>
+      <li>grid-template-rows : repeat(4, 1fr);</li>
+      <li>grid-template-columns</li>
+      <li>grid-template-areas 
         <ul>
-          <li>max-content : 한 줄에 볼 수 있게 줄 바꾸지 않고</li>
-          <li>min-content : 가장 긴 단어 기준으로 줄바꿈</li>
+          <li>: grid 이름표(grid-area) 붙여 땅따먹기</li>
+          <li>땅따먹기할 .class에 grid-area 부여 -> grid-template-areas로 땅따먹기</li>
+          <pre>
+            .container{
+              display:grid;
+              grid-template-columns : repeat(4,1fr);
+              grid-template-rows : repeat(3,1fr);
+              grid-template-areas:
+                "hd hd hd hd"
+                "ma ma . ."
+                ". . . .";
+            }
+
+            .header{grid-area:hd;}
+            .main{grid-area:ma;}
+          </pre>
         </ul>
       </li>
-      <li>컬럼의 개수 유연하게 바꿔줌 auto-fill : 유연하게 남는 공간에 들어갈 수 있으면 넣어줌 But 넣어주고도 남았을 때 빈 공간</li>
-      <li>auto-fit : 넣어주고도 남았을 때 비율 맞추고 늘려 빈공간 없이 꽉 채우게<br>
-          cf)auto-fill은 넣어주고도 컨테이너 빈 공간 남았을 때 비워둠. auto-fit은 남는 공간 없이 채움</li>
-      
+      <li>[shorthand]gap : row-gap column-gap</li>
+      <li>grid-auto-rows, grid-auto-columns(암묵적) : grid-template(명시적.아이템 없어도 자리 차지)에 명시하지 않은 추가된 행의 높이와 열의 너비</li>
+      <li>grid-auto-flow :
+        <ul>
+          <li>row</li>
+          <li>row dense(dense:빈 영역 채워짐)</li>
+          <li>column</li>
+          <li>column dense</li>
+        </ul>dense(빈 영역 채워짐)
+      </li>           
+      <li>[shorthand]grid:(auto-flow)row설정/(auto-flow)column설정
+        <ul>
+            <li>명시적-template, 암시적-auto</li>
+            <li>auto-flow 원하는 쪽에</li>
+        </ul>
+      </li>
+      <li>justify(주축)-content, align(교차축)-content : 전체 행, 전체 열</li>
+      <li>justify-items : 각각의 틀 안에서 각 아이템 어떻게 정렬할지. stretch(기본값); -> 다른값으로 바꾸면 별도 width설정 없으면 컨텐츠 길이만큼 줄어듦</li>
+      <li>justify-self : 하나의 아이템에 대한 정렬</li>
       <pre>
+        html에서는
+        &lt;div class="container">
+        &lt;div class="item">1</div>
+        &lt;div class="item">2</div>
+          &lt;div class="item">3</div>
+          &lt;div class="item">4</div>
+          &lt;div class="item">5</div>
+          &lt;div class="item">6</div>
+        &lt;/div>
+
+        css에서는
         .container{
           border: 5px dashed orange;
+
+          width: 100%;
+          heigth: 500px;
+
           display: grid;
-          grid-template-columns: repeat(auto-fill, 100px);
-          grid-auto-rows: 50px;
+          grid-template-rows: repeat(3, 1fr);
+          grid-template-columns: repeat(3, 1fr);
+
+          **전체
+          justify-items: end; 로 하면 값 설정 안한 것들 갑자기 홀쭉해짐
+          이유는 기본값이 stretch(차지할 수 있는 자리만큼 힘껏 늘어남)
+          end로 하면 stretch 해제되고 content길이(or 개별설정한 width)만큼 줄어듦
+          
         }
-      </pre> 
-      <li>사이즈 함수 mimmax(min,max) : min만큼의 남는 공간 생기면 다음 item 넣어주고, 아니면 max<br>
-                                       ** 모바일 대응처럼 구현할 수</li>
-      <pre>
-        이렇게 작성하면 컨테이너 가로 빈공간 만들지 않을 수 있음
-        100px만큼 공간 생기면 다음 item 넣, 100px만큼 안 생겼을 때는 비율 맞춰 너비 늘리기만
-        grid-template-columns : repeat(auto-fill, minmax(100px, 1fr));
+
+        .item{
+          background-color: skyblue;
+          border: 3px solid blue;
+          font-size: 24px;
+        }
+
+        .item:nth-child(1){
+          width: 50px;
+          height: 50px;
+        }
+
+        .item:nth-child(2){
+          **개별
+          justify-self: end;
+        }
+        </html>
       </pre>
     </ul>
-    </html>
+  </li>
+  <li>아이템 속성
+    <ul>
+      <li>[shorthand]grid-row : grid-row-start/grid-row-end, grid-column<br>
+        ⇒[shorthand]grid-area =>선으로. span 쓰면 칸으로.
+        <ul>
+          <li>숫자가 행,열(X) grid 몇 번째 선(O). f12눌러확인가능</li>
+          <li>1부터 시작. 뒤에서부터는 -1부터 시작. 단 음수는 명시적(template)에서만.(∵추가로 생긴 선에서는 X)<br>
+            ex)여건에 따라서 1/3, 1/-2 같을 수</li>
+          <li>1/-1 : 전체 채움</li>
+          <li>1/<span class="red">span 2 -> span 사용하면 칸수로</span></li>
+        </ul>
+      </li>
+      <li>[shorthand]grid-area
+        <ol>
+          <li>grid-template-areas의 땅따먹기 이름표 역할</li>
+          <li>[shorthand] : start가 먼저. grid-row-start/grid-column-start/grid-row-end/grid-column-end</li>
+        </ol>
+      </li>
+      <li>order : 개체들 순서. 작은 정수가 우선순위. 기본값 0.</li>
+      <li>z-index : 높은 정수가 앞으로.</li>
+    </ul>
+  </li>
+</ul>
+<ul><h2>grid 단위</h2>
+  <li>px과 fr 함께 있으면 절대길이px 적용 후 나머지 비율 적용</li>
+  <li>내용에 따라
+    <ul>
+      <li>max-content : 한 줄에 볼 수 있게 줄 바꾸지 않고</li>
+      <li>min-content : 가장 긴 단어 기준으로 줄바꿈</li>
+    </ul>
+  </li>
+  <li>컬럼의 개수 유연하게 바꿔줌 auto-fill : 유연하게 남는 공간에 들어갈 수 있으면 넣어줌 But 넣어주고도 남았을 때 빈 공간</li>
+  <li>auto-fit : 넣어주고도 남았을 때 비율 맞추고 늘려 빈공간 없이 꽉 채우게<br>
+      cf)auto-fill은 넣어주고도 컨테이너 빈 공간 남았을 때 비워둠. auto-fit은 남는 공간 없이 채움</li>
+  
+  <pre>
+    .container{
+      border: 5px dashed orange;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 100px);
+      grid-auto-rows: 50px;
+    }
+  </pre> 
+  <li>사이즈 함수 mimmax(min,max) : min만큼의 남는 공간 생기면 다음 item 넣어주고, 아니면 max<br>
+                                    ** 모바일 대응처럼 구현할 수</li>
+  <pre>
+    이렇게 작성하면 컨테이너 가로 빈공간 만들지 않을 수 있음
+    100px만큼 공간 생기면 다음 item 넣, 100px만큼 안 생겼을 때는 비율 맞춰 너비 늘리기만
+    grid-template-columns : repeat(auto-fill, minmax(100px, 1fr));
+  </pre>
+</ul>
+</html>
