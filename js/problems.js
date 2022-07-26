@@ -136,3 +136,43 @@ function solution(str){
     return arr;
 }
 
+
+//디스코드 211115-3
+/**
+* @param n {number}
+* @return {number}
+*/
+function solution(n) {
+    let answer=0;
+    //연속된 0이 나오면 count
+    let count=0;
+    let arr=[];
+    
+    n = n.toString(2)+' ';
+    
+    for(let i=0; i<n.length; i++){
+       if(n[i]==0 && n[i+1]==0){
+           //연속된 0이 나오면 count++
+           count++;
+       } else {
+           //앞뒤 연속된 0이 아니면 count arr에 넣어주고 초기화
+            arr.push(count);
+            count=0;
+       }
+    }
+    //앞이 0이고 뒤가 0이 아닐 때 넣어줘서 +1
+    //1과 1 사이의 거리에 0의 갯수를 더한 거니 +1
+    // answer = Math.max.apply(null, arr)+2; //apply 대신 [... ]
+    answer = Math.max(...arr)+2;
+
+    return answer;
+    
+    
+}
+
+console.log(solution(11));
+console.log(solution(513));
+console.log(solution(65537));
+console.log(solution(524289));
+console.log(solution(8388609));
+console.log(solution(67108865));

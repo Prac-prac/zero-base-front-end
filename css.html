@@ -88,28 +88,32 @@
 <ul>
   <h2>상속 제어</h2>
   <li>
-    자식에서 all:initial; (상속 끊)
+    자식에서 요소:initial; (상속 끊. 기본값으로 돌림)
     <ul>
       <li>내려오던 css 스타일 초기화</li>
+      <li>전부 설정할 때 all:initial;</li>
     </ul>
   </li>
   <li>
-    부모에서 all:inherit;(상속 받아라)
+    부모에서 요소:inherit;(상속 받아라. 주변에서 style 정의해도 무시 부모값만 받)
     <ul>
+      <li>전부 설정할 때 all:inherit;</li>
       <li>
         ex)
         <pre>.parent *{all:inherit;}</pre>
       </li>
     </ul>
   </li>
-  <li>all:unset; 부모에게 상속 받은 값만 받, 나머지 설정은 초기화</li>
+  <li>all:unset; 부모에게 상속 받을 값만 받고(inherit), 나머지 설정은 설정해도 무시하고 초기화(initial) -> 얘에게 적용된 스타일이 어떤건지 모르겠을 때 유용</li>
 </ul>
-</body>
+
 <h2>선택자 우선순위</h2>
-<p>!important>inline>id>>>....>*>inherit<br>
-  1. 선언된곳 2.명시도(적용범위 좁을 수록) 3.코드위치
+<p>!important>inline>id>>>....>*>부모에게 상속받은 것<br>
+  1. 선언된곳 2.명시도(적용범위 좁을 수록) 3.코드위치-마지막에 있을 수록
 </p>
 <pre>div{color:red !important;}</pre>
+
+
 <ul><h2>FONT</h2>
 <li>font마다 line-height(약간의 여백 포함) 다름</li>
 <li>font 단축속성 size, family 필수
@@ -133,25 +137,32 @@
 </li>
 <li>text-transform 한국어에는 적용x. 대소문자 조절</li>
 </ul>
-<ul><h2>길이</h2>
+<ul><h2>단위와 값</h2>
     <li>절대길이 : px. px로 길이 고정해놓으면 브라우저에서 글자크기 설정 불가능. 그래서 상대길이가 바람직.</li>
-    <li>상대길이
-        <ul>
-            <li>em(%) : 부모의 font-size기준</li>
-            <li>rem : root(html body=브라우저설정)의 font-size</li>
+    <li>상대길이 : 브라우저에 의해 결국 px로 계산되어지긴함 -> Computed 들어가면 볼 수 있
+        <ul>글꼴과 관련된 상대길이
+            <li>em : 부모의 font-size(상속이되는요소임)기준. %와 같음</li>
+            <li>rem : root(html body=브라우저설정)의 font-size인 16px 기준</li>
         </ul>
-        <ul>반응형 디자인할때 사용.<br>
-            뷰포트 가로세로길이 100vw, 100vh로 잡
-            <li>vw,vh</li>
+        <ul>뷰포트 관련된 백분율 길이
+            <li>vw,vh : 반응형 디자인할때 사용. 뷰포트 가로세로길이 100vw, 100vh로 잡</li>
+            <li>vmin, vmax : 스마트폰 가로세로 모드 바꿀 때. vmin, vmax 변경되는 시점<br>
+              <pre>width: 100vmin; height:100vmin;</pre>
+            </li>
         </ul>
     </li>
     <li>calc()
       <ul>
-        <li>단위 다른 길이 계산 ex)width:calc(100% - lem);</li>
-        <li>연산자 좌우에 공백 있어야</li>
+        <li>다른 단위 길이 계산 ex)width:calc(100% - lem);</li>
+        <li>연산자(=사칙연산자) 좌우에 공백 있어야</li>
+        <li>*은 하나 이상의 피연산자 타입 number여야, /는 오른쪽 피연산자 타입 number여야</li>
       </ul>
     </li>
-    <li>min(100%,500px), max(,)</li>
+    <li>
+      min(,) max(,) -> 익스플러어 미지원. min-width, minmax()로<br>
+      ex) min(100%,500px) 100%가 500px 넘는 순간부터 500px
+    </li>
+
 </ul>
 <ul><h2>박스모델</h2>
   <ul><h3>margin</h3>
@@ -597,4 +608,5 @@
     grid-template-columns : repeat(auto-fill, minmax(100px, 1fr));
   </pre>
 </ul>
+</body>
 </html>
